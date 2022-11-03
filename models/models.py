@@ -29,9 +29,9 @@ class Event(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String)
     content = Column(String)
-    date = Date()
-    startTime = Time()
-    endTime = Time()
+    date = Column(Date)
+    startTime = Column(Time)
+    endTime = Column(Time)
     user_id = Column(Integer, ForeignKey("user.id"))
 
     user = relationship("User")
