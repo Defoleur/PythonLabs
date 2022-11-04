@@ -10,3 +10,8 @@ app.register_blueprint(user_api)
 @app.route("/api/v1/hello-world-27")
 def hello_world():
     return "Hello, World! 27"
+
+
+@app.errorhandler(ValueError)
+def incorrect_value(e: ValueError):
+    return str(e), 400
