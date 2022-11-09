@@ -4,9 +4,9 @@ from datetime import date
 import re
 import string
 from flask import Flask, request, Response, Blueprint
-from psycopg2 import IntegrityError
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.exc import IntegrityError
 from api.Encoder import AlchemyEncoder
 from models.models import Event, EventUser, User
 
@@ -62,6 +62,26 @@ def create_event():
         return Response('Event added successfully!', status=200)
     else:
         return Response('Some required fields are missing!', status=402)
+
+
+@event_api.route("/api/v1/event/user", methods=['POST'])
+def add_user_to_event():
+    user_data = request.get_json()
+    if user_data is None:
+        return Response(status=402)
+
+    event_usr = session.query(EventUser)
+    current_event = event_usr.filter_by(event_id=int(user_data['event_id']), user_id=int(user_data['user_id'])).first()
+    if current_event is not None:
+        return Response('User is already registered', 402)
+
+    try:
+        event_user = EventUser(event_id=user_data['event_id'], user_id=user_data['user_id'])
+        session.add(event_user)
+        session.commit()
+    except IntegrityError:
+        return Response('Integrity Error', status=402)
+    return Response('User successfully added to event!', status=200)
 
 
 @event_api.route("/api/v1/event/<id>", methods=['GET'])

@@ -1,5 +1,6 @@
 from datetime import datetime
 
+import bcrypt as bcrypt
 from flask import Response
 from sqlalchemy import Column, Integer, String, Date, Time, ForeignKey, Enum
 from sqlalchemy.orm import relationship, declarative_base, validates
@@ -29,9 +30,20 @@ class User(Base):
     password = Column(String)
     firstName = Column(String)
     lastName = Column(String)
-    phone = Column(String)
-    email = Column(String)
+    phone = Column(String, unique=True)
+    email = Column(String, unique=True)
     role = Column(Enum(Role))
+
+    def to_dict(self) -> dict:
+        return {
+            'username': self.username,
+             'first_name': self.firstName,
+            'last_name': self.lastName,
+            'password': self.password,
+            'phone': self.phone,
+            'email': self.email,
+            'role': str(self.role)
+        }
 
     @validates("username")
     def validate_username(self, key, username):
@@ -58,7 +70,7 @@ class User(Base):
 
     @validates("email")
     def validate_last_name(self, key, email):
-        if User.email_r.match(email) is None:
+        if User.__email_r.match(email) is None:
             raise ValueError("This is not email")
 
         return email
@@ -67,8 +79,9 @@ class User(Base):
     def validate_password(self, key, password: str):
         if User.__password_r.match(password) is None:
             raise ValueError("This is not password(8 characters long+, one letter and number")
-
-        return password
+        new_password = bytes(password, "utf-8")
+        new_password = bcrypt.hashpw(new_password, bcrypt.gensalt(12))
+        return new_password.decode("utf-8")
 
     @validates("phone")
     def validate_phone(self, key, phone):
