@@ -133,4 +133,8 @@ class EventUser(Base):
     event = relationship("Event")
     user = relationship("User")
 
-
+    def to_dict(self) -> dict:
+        return {
+            'event': self.event,
+             'user': self.user
+        }

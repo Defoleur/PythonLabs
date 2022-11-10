@@ -7,6 +7,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import sessionmaker
 
+from api.Encoder import AlchemyEncoder
 from models.models import User
 
 user_api = Blueprint('user_api', __name__)
@@ -45,3 +46,49 @@ def user_login():
         return Response("Invalid username or password specified", status=400)
 
     return Response("Invalid request body, specify password and username, please!", status=400)
+
+
+@user_api.route("/api/v1/user/<username>", methods=['GET'])
+def get_user(username):
+    user = session.query(User).filter_by(username=username).first()
+    if user is None:
+        return Response('User not found', 404)
+    return Response(
+        response=json.dumps(user.to_dict(), cls=AlchemyEncoder),
+        status=200,
+        mimetype='application/json'
+    )
+
+
+@user_api.route("/api/v1/user/<username>", methods=['PUT'])
+def update_user(username):
+    user_data = request.get_json()
+    if user_data is None:
+        return Response(status=402)
+    user = session.query(User).filter_by(username=username).first()
+    if user is None:
+        return Response('User not found', status=402)
+    try:
+        user.update(user_data)
+        session.commit()
+    except IntegrityError:
+        return Response('Integrity Error', status=402)
+    return Response('User updated', status=200)
+
+
+@user_api.route("/api/v1/user/<username>", methods=['DELETE'])
+def delete_user(username):
+    user = session.query(User).filter_by(username=username).first()
+    if user is None:
+        return Response('User not found', 404)
+    try:
+        session.delete(user)
+        session.commit()
+    except IntegrityError:
+        return Response('Delete failed', 402)
+    return Response('Deleted successfully', 200)
+
+
+@user_api.route("/api/v1/user/logout", methods=['GET'])
+def user_logout():
+    return Response('Logout successful!', status=200)

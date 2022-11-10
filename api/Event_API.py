@@ -17,6 +17,19 @@ session = Session()
 event_api = Blueprint('event_api', __name__)
 
 
+@event_api.route("/api/v1/event", methods=['PUT'])
+def update_event():
+    event_data = request.get_json()
+    if event_data is None:
+        return Response(status=402)
+    try:
+        session.query(Event).filter(Event.id == event_data['id']).update(event_data)
+        session.commit()
+    except IntegrityError:
+        return Response('Integrity Error', status=402)
+    return Response('Event updated', status=200)
+
+
 @event_api.route("/api/v1/event", methods=['POST'])
 def create_event():
     event_data = request.get_json()
@@ -62,6 +75,42 @@ def create_event():
         return Response('Event added successfully!', status=200)
     else:
         return Response('Some required fields are missing!', status=402)
+
+
+@event_api.route("/api/v1/<user_id>/created", methods=['GET'])
+def created_events(user_id):
+    current_user = session.query(User).get(int(user_id))
+    if current_user is None:
+        return Response('User not found', 404)
+    events = session.query(Event).filter_by(user_id=user_id)
+    events_json = []
+    if events is None:
+        return Response("No events was found", status=404)
+    for event in events:
+        events_json.append(event.to_dict())
+    return Response(
+        response=json.dumps(events_json, cls=AlchemyEncoder),
+        status=200,
+        mimetype='application/json'
+    )
+
+
+@event_api.route("/api/v1/<user_id>/attached", methods=['GET'])
+def attached_events(user_id):
+    current_user = session.query(User).get(int(user_id))
+    if current_user is None:
+        return Response('User not found', 404)
+    events = session.query(EventUser).filter_by(user_id=user_id)
+    events_json = []
+    if events is None:
+        return Response("No events was found", status=404)
+    for event in events:
+        events_json.append(event.event.to_dict())
+    return Response(
+        response=json.dumps(events_json, cls=AlchemyEncoder),
+        status=200,
+        mimetype='application/json'
+    )
 
 
 @event_api.route("/api/v1/event/user", methods=['POST'])
