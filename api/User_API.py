@@ -16,6 +16,7 @@ engine = create_engine("postgresql://postgres:admin@localhost:5432/events-calend
 Session = sessionmaker(bind=engine)
 session = Session()
 
+
 @user_api.route("/api/v1/user", methods=['POST'])
 def add_user():
     user_data = request.get_json()
@@ -28,6 +29,7 @@ def add_user():
     except IntegrityError:
         return Response('Some problem', status=400)
     return Response('User successfully created!', status=200)
+
 
 @user_api.route("/api/v1/user/login", methods=['GET'])
 def user_login():

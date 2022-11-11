@@ -34,6 +34,9 @@ class User(Base):
     email = Column(String, unique=True)
     role = Column(Enum(Role))
 
+    event_users = relationship("EventUser", cascade="all, delete")
+    events = relationship("Event", cascade="all, delete")
+
     def to_dict(self) -> dict:
         return {
             'username': self.username,
@@ -103,6 +106,7 @@ class Event(Base):
     user_id = Column(Integer, ForeignKey("user.id"))
 
     user = relationship("User")
+    event_users = relationship("EventUser", cascade="all, delete")
 
     def to_dict(self) -> dict:
         return {
