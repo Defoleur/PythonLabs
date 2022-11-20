@@ -7,8 +7,11 @@ from flask import Flask, request, Response, Blueprint
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.exc import IntegrityError
+
+from api.Auth import auth
 from api.Encoder import AlchemyEncoder
-from models.models import Event, EventUser, User
+from errors.auth_errors import NotSufficientRights
+from models.models import Event, EventUser, User, Role
 
 engine = create_engine("postgresql://postgres:admin@localhost:5432/events-calendar")
 Session = sessionmaker(bind=engine)
@@ -17,20 +20,21 @@ session = Session()
 event_api = Blueprint('event_api', __name__)
 
 
-@event_api.route("/api/v1/event", methods=['PUT'])
-def update_event():
-    event_data = request.get_json()
-    if event_data is None:
-        return Response(status=402)
-    try:
-        session.query(Event).filter(Event.id == event_data['id']).update(event_data)
-        session.commit()
-    except IntegrityError:
-        return Response('Integrity Error', status=402)
-    return Response('Event updated', status=200)
+@event_api.route("/api/v1/event/<id>", methods=['GET'])
+def get_event_by_id(id):
+    event = session.query(Event)
+    current_event = event.get(int(id))
+    if current_event is None:
+        return Response('Event not found', 404)
+    return Response(
+        response=json.dumps(current_event.to_dict(), cls=AlchemyEncoder),
+        status=200,
+        mimetype='application/json'
+    )
 
 
 @event_api.route("/api/v1/event", methods=['POST'])
+@auth.login_required()
 def create_event():
     event_data = request.get_json()
     title = content = date2 = startTime = endTime = user_id = None
@@ -49,7 +53,6 @@ def create_event():
         day = data[2]
         month = data[3]
         date2 = date(int(year), int(day), int(month))
-        user_id = event_data['user_id']
 
         if 'content' in event_data:
             content = event_data['content']
@@ -66,7 +69,8 @@ def create_event():
             else:
                 endTime = event_data['endTime']
 
-        event = Event(title=title, content=content, user_id=user_id, endTime=endTime, date=date2, startTime=startTime)
+        event = Event(title=title, content=content, user_id=auth.current_user().id, endTime=endTime, date=date2,
+                      startTime=startTime)
         session.add(event)
         try:
             session.commit()
@@ -77,11 +81,49 @@ def create_event():
         return Response('Some required fields are missing!', status=402)
 
 
+@event_api.route("/api/v1/event", methods=['PUT'])
+@auth.login_required()
+def update_event():
+    event_data = request.get_json()
+    if event_data is None:
+        return Response(status=402)
+
+    try:
+        event_query = session.query(Event).filter(Event.id == event_data['id'])
+        event = event_query.first()
+        if event.user_id != auth.current_user().id and auth.current_user().role != Role.admin:
+            raise NotSufficientRights("No access")
+        session.commit()
+    except IntegrityError:
+        return Response('Integrity Error', status=402)
+    return Response('Event updated', status=200)
+
+
+@event_api.route("/api/v1/event/<id>", methods=['DELETE'])
+@auth.login_required()
+def delete_by_id(id):
+    event = session.query(Event)
+    current_event = event.get(int(id))
+    if current_event is None:
+        return Response('Event not found', 404)
+    if event.user_id != auth.current_user().id and auth.current_user().role != Role.admin:
+        raise NotSufficientRights()
+    session.delete(current_event)
+    try:
+        session.commit()
+        return Response('Deleted successfully', 200)
+    except:
+        return Response('Delete failed', 402)
+
+
 @event_api.route("/api/v1/<user_id>/created", methods=['GET'])
+@auth.login_required()
 def created_events(user_id):
     current_user = session.query(User).get(int(user_id))
     if current_user is None:
         return Response('User not found', 404)
+    if current_user.id != auth.current_user().id and auth.current_user().role != Role.admin:
+        raise NotSufficientRights()
     events = session.query(Event).filter_by(user_id=user_id)
     events_json = []
     if events is None:
@@ -96,10 +138,13 @@ def created_events(user_id):
 
 
 @event_api.route("/api/v1/<user_id>/attached", methods=['GET'])
+@auth.login_required()
 def attached_events(user_id):
     current_user = session.query(User).get(int(user_id))
     if current_user is None:
         return Response('User not found', 404)
+    if current_user.id != auth.current_user().id and auth.current_user().role != Role.admin:
+        raise NotSufficientRights()
     events = session.query(EventUser).filter_by(user_id=user_id)
     events_json = []
     if events is None:
@@ -114,18 +159,24 @@ def attached_events(user_id):
 
 
 @event_api.route("/api/v1/event/user", methods=['POST'])
+@auth.login_required()
 def add_user_to_event():
     user_data = request.get_json()
     if user_data is None:
         return Response(status=402)
 
     event_usr = session.query(EventUser)
-    current_event = event_usr.filter_by(event_id=int(user_data['event_id']), user_id=int(user_data['user_id'])).first()
+    current_event = event_usr.filter_by(event_id=int(user_data['event_id']),
+                                        user_id=int(user_data['user_id'])).first()
+
     if current_event is not None:
         return Response('User is already registered', 402)
 
     try:
         event_user = EventUser(event_id=user_data['event_id'], user_id=user_data['user_id'])
+        event = session.query(Event).filter(Event.id == user_data['event_id']).first()
+        if event.user_id != auth.current_user().id and auth.current_user().role != Role.admin:
+            raise NotSufficientRights()
         session.add(event_user)
         session.commit()
     except IntegrityError:
@@ -133,39 +184,17 @@ def add_user_to_event():
     return Response('User successfully added to event!', status=200)
 
 
-@event_api.route("/api/v1/event/<id>", methods=['GET'])
-def get_event_by_id(id):
-    event = session.query(Event)
-    current_event = event.get(int(id))
-    if current_event is None:
-        return Response('Event not found', 404)
-    return Response(
-        response=json.dumps(current_event.to_dict(), cls=AlchemyEncoder),
-        status=200,
-        mimetype='application/json'
-    )
-
-
-@event_api.route("/api/v1/event/<id>", methods=['DELETE'])
-def delete_by_id(id):
-    event = session.query(Event)
-    current_event = event.get(int(id))
-    if current_event is None:
-        return Response('Event not found', 404)
-    session.delete(current_event)
-    try:
-        session.commit()
-        return Response('Deleted successfully', 200)
-    except:
-        return Response('Delete failed', 402)
-
-
 @event_api.route("/api/v1/event/<event_id>/<user_id>", methods=['DELETE'])
+@auth.login_required()
 def delete_user_from_event(event_id, user_id):
     event = session.query(EventUser)
     current_event = event.filter_by(event_id=int(event_id), user_id=int(user_id)).first()
     if current_event is None:
         return Response('Event or user not found', 404)
+    if current_event.event.user_id != auth.current_user().id and \
+            current_event.user_id != auth.current_user().id and \
+            auth.current_user().role != Role.admin:
+        raise NotSufficientRights()
     session.delete(current_event)
     try:
         session.commit()

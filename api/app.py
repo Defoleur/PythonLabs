@@ -1,6 +1,7 @@
-from flask import Flask
+from flask import Flask, jsonify
 from Event_API import event_api
 from User_API import user_api
+from errors.auth_errors import *
 
 app = Flask(__name__)
 app.register_blueprint(event_api)
@@ -15,3 +16,13 @@ def hello_world():
 @app.errorhandler(ValueError)
 def incorrect_value(e: ValueError):
     return str(e), 400
+
+
+@app.errorhandler(InvalidCredentials)
+def incorrect_value(e: ValueError):
+    return jsonify(msg=str(e)), 400
+
+
+@app.errorhandler(NotSufficientRights)
+def incorrect_value(e: ValueError):
+    return jsonify(msg=str(e)), 400

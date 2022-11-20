@@ -13,6 +13,8 @@ SQLAlchemy = "^1.4.42"
 jupyter = "^1.0.0"
 psycopg2 = "^2.9.5"
 alembic = "1.8.1"
+bcrypt = "^4.0.1"
+flask-httpauth = "^4.7.0"
 
 [build-system]
 requires = ["poetry-core"]

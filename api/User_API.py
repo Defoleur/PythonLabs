@@ -1,12 +1,14 @@
+import base64
 import json
 
 import bcrypt
-from flask import Flask, request, Response
+from flask import Flask, request, Response, jsonify
 from flask import Blueprint
 from sqlalchemy import create_engine
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import sessionmaker
 
+from api.Auth import auth
 from api.Encoder import AlchemyEncoder
 from models.models import User
 
@@ -43,7 +45,8 @@ def user_login():
                 if not bcrypt.checkpw(data['password'].encode("utf-8"), user.password.encode("utf-8")):
                     return Response("Invalid password or username specified", status=404)
 
-                return Response(json.dumps(user.to_dict()), status=200)
+                token = base64.encodebytes(f"{data['username']}:{data['password']}".encode('utf-8'))
+                return jsonify({'basic': token.decode("utf-8").replace("\n", "")}), 200
     except IntegrityError:
         return Response("Invalid username or password specified", status=400)
 
@@ -51,6 +54,7 @@ def user_login():
 
 
 @user_api.route("/api/v1/user/<username>", methods=['GET'])
+@auth.login_required(role='admin')
 def get_user(username):
     user = session.query(User).filter_by(username=username).first()
     if user is None:
@@ -63,6 +67,7 @@ def get_user(username):
 
 
 @user_api.route("/api/v1/user/<username>", methods=['PUT'])
+@auth.login_required(role=['user', 'admin'])
 def update_user(username):
     user_data = request.get_json()
     if user_data is None:
@@ -70,15 +75,18 @@ def update_user(username):
     user = session.query(User).filter_by(username=username).first()
     if user is None:
         return Response('User not found', status=402)
-    try:
-        user.update(user_data)
-        session.commit()
-    except IntegrityError:
-        return Response('Integrity Error', status=402)
-    return Response('User updated', status=200)
+    if 'id' in user_data and auth.current_user().id == int(user_data['id']):
+        try:
+            user.update(user_data)
+            session.commit()
+        except IntegrityError:
+            return Response('Integrity Error', status=402)
+        return Response('User updated', status=200)
+    return Response("Invalid request", status=400)
 
 
 @user_api.route("/api/v1/user/<username>", methods=['DELETE'])
+@auth.login_required(role='admin')
 def delete_user(username):
     user = session.query(User).filter_by(username=username).first()
     if user is None:
