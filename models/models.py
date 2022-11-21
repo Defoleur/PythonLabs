@@ -1,5 +1,5 @@
-from datetime import datetime
-
+import datetime
+from datetime import date, time
 import bcrypt as bcrypt
 from flask import Response
 from sqlalchemy import Column, Integer, String, Date, Time, ForeignKey, Enum
@@ -21,6 +21,11 @@ def validate_name(name):
         raise ValueError("Length of username should be less than 40 and more than 4 characters long")
     return name
 
+
+def validate_date(date):
+    if date <= datetime.date.today():
+        raise ValueError("Date of this day is earlier than today")
+    return date
 
 class User(Base):
     __tablename__ = "user"
@@ -72,7 +77,7 @@ class User(Base):
     __phone_r = re.compile("^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$")
 
     @validates("email")
-    def validate_last_name(self, key, email):
+    def validate_email(self, key, email):
         if User.__email_r.match(email) is None:
             raise ValueError("This is not email")
 
@@ -120,13 +125,16 @@ class Event(Base):
 
     @validates('startTime', 'endTime')
     def time_validation(self, key, field):
-        if key == 'endTime':
+        if key == 'startTime':
             return field
-        elif key == 'startTime':
-            if self.endTime < field:
+        elif key == 'endTime':
+            if self.startTime > field:
                 raise ValueError("The end time field must be greater-or-equal than the start time field")
         return field
 
+    @validates('date')
+    def date_validation(self, key, date):
+        return validate_date(date)
 
 
 class EventUser(Base):
