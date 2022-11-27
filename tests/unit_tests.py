@@ -19,8 +19,12 @@ def wrong_phone(user):
     user.phone = "9212041"
 
 
+def wrong_name(user):
+    user.firstName = ""
+
+
 def wrong_time(event):
-    event.endTime = time(17, 00, 00)
+    event.startTime = time(20, 00, 00)
 
 
 def wrong_date(event):
@@ -62,10 +66,16 @@ class TestUser(TestCase):
         the_exception = cm.exception
         self.assertEqual(the_exception.args[0], "This is not a phone number")
 
+    def test_first_name(self):
+        with self.assertRaises(ValueError) as cm:
+            wrong_name(self.user)
+        the_exception = cm.exception
+        self.assertEqual(the_exception.args[0], "Length of name should be less than 40 and more than 4 characters long")
+
 
 class TestEvent(TestCase):
     event = Event(title="Student's day", content="The best day of my life", date=date(2022, 12, 10),
-                  startTime=time(18, 00, 00), endTime=time(19, 00, 00))
+                  endTime=time(19, 00, 00), startTime=time(18, 00, 00))
 
     def test_event_insert(self):
         self.assertEqual(self.event.title, "Student's day")

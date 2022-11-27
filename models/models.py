@@ -18,7 +18,7 @@ class Role(enum.Enum):
 def validate_name(name):
     length = len(name)
     if length <= 3 or length > 40:
-        raise ValueError("Length of username should be less than 40 and more than 4 characters long")
+        raise ValueError("Length of name should be less than 40 and more than 4 characters long")
     return name
 
 
@@ -45,8 +45,8 @@ class User(Base):
     def to_dict(self) -> dict:
         return {
             'username': self.username,
-             'first_name': self.firstName,
-            'last_name': self.lastName,
+             'firstName': self.firstName,
+            'lastName': self.lastName,
             'password': self.password,
             'phone': self.phone,
             'email': self.email,
@@ -60,11 +60,11 @@ class User(Base):
             raise ValueError("Length of username should be less than 30 and more than 5 characters long")
         return username
 
-    @validates("first_name")
+    @validates("firstName")
     def validate_first_name(self, key, first_name):
         return validate_name(first_name)
 
-    @validates("last_name")
+    @validates("lastName")
     def validate_last_name(self, key, last_name):
         return validate_name(last_name)
 
@@ -125,10 +125,10 @@ class Event(Base):
 
     @validates('startTime', 'endTime')
     def time_validation(self, key, field):
-        if key == 'startTime':
+        if key == 'endTime':
             return field
-        elif key == 'endTime':
-            if self.startTime > field:
+        elif key == 'startTime':
+            if self.endTime < field:
                 raise ValueError("The end time field must be greater-or-equal than the start time field")
         return field
 
