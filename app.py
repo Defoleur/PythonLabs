@@ -19,11 +19,11 @@ def create_app():
 
     @app.errorhandler(InvalidCredentials)
     def incorrect_value(e: ValueError):
-        return jsonify(msg=str(e)), 400
+        return jsonify({'message': str(e)}), 400
 
     @app.errorhandler(NotSufficientRights)
     def incorrect_value(e: ValueError):
-        return jsonify(msg=str(e)), 400
+        return jsonify({'message': str(e)}), 400
 
     @app.errorhandler(Exception)
     def invalid_credentials_handler(e):
