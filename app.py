@@ -15,7 +15,7 @@ def create_app():
 
     @app.errorhandler(ValueError)
     def incorrect_value(e: ValueError):
-        return str(e), 400
+        return jsonify({'message': str(e)}), 400
 
     @app.errorhandler(InvalidCredentials)
     def incorrect_value(e: ValueError):
@@ -27,7 +27,7 @@ def create_app():
 
     @app.errorhandler(Exception)
     def invalid_credentials_handler(e):
-        return jsonify({'msg': str(e)}), 400
+        return jsonify({'message': str(e)}), 400
     return app
 
 
