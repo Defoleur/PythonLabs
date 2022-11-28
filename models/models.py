@@ -31,7 +31,7 @@ class User(Base):
     __tablename__ = "user"
 
     id = Column(Integer, primary_key=True)
-    username = Column(String)
+    username = Column(String, unique=True)
     password = Column(String)
     firstName = Column(String)
     lastName = Column(String)
