@@ -125,24 +125,24 @@ class EventAPITest(TestCase):
         self.assert400(not_enough_rights_update)
 
     def test_get_created_events(self):
-        not_enough_rights_get = self.client.get("/api/v1/4/created", auth=("defaultUser", "lolkek129L"))
-        get = self.client.get("/api/v1/4/created", auth=("admin", "lolkek129L"))
-        get_with_wrong_id = self.client.get("/api/v1/100/created", auth=("admin", "lolkek129L"))
+        not_enough_rights_get = self.client.get("/api/v1/event/4/created", auth=("defaultUser", "lolkek129L"))
+        get = self.client.get("/api/v1/event/4/created", auth=("admin", "lolkek129L"))
+        get_with_wrong_id = self.client.get("/api/v1/event/100/created", auth=("admin", "lolkek129L"))
         self.assert200(get)
         self.assert400(not_enough_rights_get)
         self.assert404(get_with_wrong_id)
 
     def test_get_attached_events(self):
-        not_enough_rights_get = self.client.get("/api/v1/4/attached", auth=("defaultUser", "lolkek129L"))
-        get = self.client.get("/api/v1/43/attached", auth=("admin", "lolkek129L"))
-        get_with_wrong_id = self.client.get("/api/v1/100/attached", auth=("admin", "lolkek129L"))
+        not_enough_rights_get = self.client.get("/api/v1/event/4/attached", auth=("defaultUser", "lolkek129L"))
+        get = self.client.get("/api/v1/event/43/attached", auth=("admin", "lolkek129L"))
+        get_with_wrong_id = self.client.get("/api/v1/event/100/attached", auth=("admin", "lolkek129L"))
         self.assert200(get)
         self.assert400(not_enough_rights_get)
         self.assert404(get_with_wrong_id)
 
     def test_add_user_to_event(self):
-        post_response = self.client.post("/api/v1/event/user", json={"event_id": 12,
-                                                                    "user_id": 43
+        post_response = self.client.post("/api/v1/event/user", json={"event": 12,
+                                                                    "user": 43
                                                                 }, auth=("admin", "lolkek129L"))
         delete_response = self.client.delete("/api/v1/event/12/43", auth=("admin", "lolkek129L"))
         not_found_delete_response = self.client.delete("/api/v1/event/100/43", auth=("admin", "lolkek129L"))

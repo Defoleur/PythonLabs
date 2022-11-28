@@ -84,7 +84,7 @@ def update_user():
             data['password'] = user.password
         session.query(User).filter(User.username == user.username).update(data,
                                                                           synchronize_session="fetch")
-        return jsonify({"message": "Success my man!"}), 200
+        return jsonify({"message": "User was updated!"}), 200
     return jsonify({"message": "Invalid request"}), 400
 
 
