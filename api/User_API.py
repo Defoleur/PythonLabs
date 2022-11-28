@@ -24,14 +24,14 @@ def add_user():
     try:
         user_data = request.get_json()
     except:
-        return Response("No JSON data has been specified!", status=400)
+        return jsonify({"message": "No JSON data has been specified!"}), 400
     try:
         user = User(**user_data)
         session.add(user)
         session.commit()
     except:
-        return Response('User was not created', status=400)
-    return Response('User successfully created!', status=200)
+        return jsonify({"message": "User was not created"}), 400
+    return jsonify({"message": "User successfully created!"}), 200
 
 
 @user_api.route("/api/v1/user/login", methods=['GET'])
@@ -39,16 +39,16 @@ def user_login():
     try:
         data = request.get_json()
     except:
-        return Response("Invalid request body, specify password and username, please!", status=400)
+        return jsonify({"message": "Invalid request body, specify password and username, please!"}), 400
     if 'password' in data and 'username' in data:
         with Session.begin() as session:
             user = session.query(User).filter_by(username=data['username']).first()
             if not bcrypt.checkpw(data['password'].encode("utf-8"), user.password.encode("utf-8")):
-                return Response("Invalid password or username specified", status=404)
+                return jsonify({"message": "Invalid password or username specified"}), 404
 
             token = base64.encodebytes(f"{data['username']}:{data['password']}".encode('utf-8'))
             return jsonify({'basic': token.decode("utf-8").replace("\n", "")}), 200
-    return Response("Invalid request body, specify password and username, please!", status=400)
+    return jsonify({"message": "Invalid request body, specify password and username, please!"}), 400
 
 
 @user_api.route("/api/v1/user/<username>", methods=['GET'])
@@ -56,7 +56,7 @@ def user_login():
 def get_user(username):
     user = session.query(User).filter_by(username=username).first()
     if user is None:
-        return Response('User not found', 404)
+        return jsonify({"message": "User not found"}), 404
     return Response(
         response=json.dumps(user.to_dict()),
         status=200,
@@ -64,13 +64,15 @@ def get_user(username):
     )
 
 
-@user_api.route("/api/v1/user/<username>", methods=['PUT'])
+@user_api.route("/api/v1/user", methods=['PUT'])
 @auth.login_required(role=['user', 'admin'])
-def update_user(username):
+def update_user():
     try:
         data = request.get_json()
     except:
-        return Response("No JSON data has been specified!", status=400)
+        return jsonify({"message": "No JSON data has been specified!"}), 400
+    if 'role' in data and auth.current_user().role != Role.admin:
+        raise NotSufficientRights("Not enough rights to update role")
     with Session.begin() as session:
         if auth.current_user().role != Role.admin and \
                 'username' in data and \
@@ -81,8 +83,8 @@ def update_user(username):
             data['password'] = user.password
         session.query(User).filter(User.username == user.username).update(data,
                                                                           synchronize_session="fetch")
-        return Response("Success my man!", status=200)
-    return Response("Invalid request", status=400)
+        return jsonify({"message": "Success my man!"}), 200
+    return jsonify({"message": "Invalid request"}), 400
 
 
 @user_api.route("/api/v1/user/<username>", methods=['DELETE'])
@@ -90,9 +92,9 @@ def update_user(username):
 def delete_user(username):
     user = session.query(User).filter_by(username=username).first()
     if user is None:
-        return Response('User not found', 404)
+        return jsonify({"message": "User not found"}), 404
     session.delete(user)
     session.commit()
-    return Response('Deleted successfully', 200)
+    return jsonify({"message": "Deleted successfully"}), 200
 
 

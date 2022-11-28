@@ -57,8 +57,8 @@ class UserAPITest(TestCase):
         self.assert404(get_with_wrong_username)
 
     def test_update_user(self):
-        update = self.client.put("/api/v1/user/admin", auth=("admin", "lolkek129L"), json={"firstName": "admin1"})
-        wrong_update = self.client.put("/api/v1/user/admin", auth=("admin", "lolkek129L"))
+        update = self.client.put("/api/v1/user", auth=("admin", "lolkek129L"), json={"firstName": "admin1"})
+        wrong_update = self.client.put("/api/v1/user", auth=("admin", "lolkek129L"))
         self.assert200(update)
         self.assert400(wrong_update)
 
