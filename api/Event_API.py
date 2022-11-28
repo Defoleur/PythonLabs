@@ -116,7 +116,7 @@ def delete_by_id(id):
         return jsonify({"message": 'Delete failed'}), 400
 
 
-@event_api.route("/api/v1/<user_id>/created", methods=['GET'])
+@event_api.route("/api/v1/event/<user_id>/created", methods=['GET'])
 @auth.login_required()
 def created_events(user_id):
     current_user = session.query(User).get(int(user_id))
@@ -137,7 +137,7 @@ def created_events(user_id):
     )
 
 
-@event_api.route("/api/v1/<user_id>/attached", methods=['GET'])
+@event_api.route("/api/v1/event/<user_id>/attached", methods=['GET'])
 @auth.login_required()
 def attached_events(user_id):
     current_user = session.query(User).get(int(user_id))
