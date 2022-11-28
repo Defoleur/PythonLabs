@@ -25,6 +25,7 @@ def add_user():
         user_data = request.get_json()
     except:
         return jsonify({"message": "No JSON data has been specified!"}), 400
+    user_data['role'] = 'user'
     try:
         user = User(**user_data)
         session.add(user)
