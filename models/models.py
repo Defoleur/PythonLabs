@@ -27,6 +27,7 @@ def validate_date(date):
         raise ValueError("Date of this day is earlier than today")
     return date
 
+
 class User(Base):
     __tablename__ = "user"
 

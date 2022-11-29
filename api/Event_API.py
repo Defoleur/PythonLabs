@@ -20,6 +20,7 @@ event_api = Blueprint('event_api', __name__)
 
 
 @event_api.route("/api/v1/event/<id>", methods=['GET'])
+@auth.login_required()
 def get_event_by_id(id):
     event = session.query(Event)
     current_event = event.get(int(id))
