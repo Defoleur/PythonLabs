@@ -107,7 +107,7 @@ class EventAPITest(TestCase):
         self.assert400(without_date_post_response)
         self.assert400(not_correct_date_post_response)
         self.assert400(not_correct_time_post_response)
-        self.assert400(not_rights_delete_response)
+        self.assert403(not_rights_delete_response)
         self.assert404(not_found_delete_response)
 
     def test_get_event(self):
@@ -122,14 +122,14 @@ class EventAPITest(TestCase):
         not_enough_rights_update = self.client.put("/api/v1/event", auth=("defaultUser", "lolkek129L"), json={"id": 1, "title": "Student's day"})
         self.assert200(update)
         self.assert400(wrong_update)
-        self.assert400(not_enough_rights_update)
+        self.assert403(not_enough_rights_update)
 
     def test_get_created_events(self):
         not_enough_rights_get = self.client.get("/api/v1/event/4/created", auth=("defaultUser", "lolkek129L"))
         get = self.client.get("/api/v1/event/4/created", auth=("admin", "lolkek129L"))
         get_with_wrong_id = self.client.get("/api/v1/event/100/created", auth=("admin", "lolkek129L"))
         self.assert200(get)
-        self.assert400(not_enough_rights_get)
+        self.assert403(not_enough_rights_get)
         self.assert404(get_with_wrong_id)
 
     def test_get_attached_events(self):
@@ -137,7 +137,7 @@ class EventAPITest(TestCase):
         get = self.client.get("/api/v1/event/43/attached", auth=("admin", "lolkek129L"))
         get_with_wrong_id = self.client.get("/api/v1/event/100/attached", auth=("admin", "lolkek129L"))
         self.assert200(get)
-        self.assert400(not_enough_rights_get)
+        self.assert403(not_enough_rights_get)
         self.assert404(get_with_wrong_id)
 
     def test_add_user_to_event(self):
