@@ -23,7 +23,7 @@ def create_app():
 
     @app.errorhandler(NotSufficientRights)
     def incorrect_value(e: ValueError):
-        return jsonify({'message': str(e)}), 400
+        return jsonify({'message': str(e)}), 403
 
     @app.errorhandler(Exception)
     def invalid_credentials_handler(e):
