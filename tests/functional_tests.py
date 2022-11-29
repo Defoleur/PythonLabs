@@ -111,8 +111,8 @@ class EventAPITest(TestCase):
         self.assert404(not_found_delete_response)
 
     def test_get_event(self):
-        get = self.client.get("/api/v1/event/1")
-        get_with_wrong_id = self.client.get("/api/v1/event/100")
+        get = self.client.get("/api/v1/event/12", auth=("admin", "lolkek129L"))
+        get_with_wrong_id = self.client.get("/api/v1/event/100", auth=("admin", "lolkek129L"))
         self.assert200(get)
         self.assert404(get_with_wrong_id)
 
