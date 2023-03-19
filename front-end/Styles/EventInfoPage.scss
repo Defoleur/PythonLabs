@@ -1,0 +1,93 @@
+@import "Colors";
+@import "Fonts";
+@import "Navbar";
+@media screen and (min-width: 500px) {
+	.custom-container {
+		width: calc(60vw + 150px);
+	}
+}
+body{
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-image: url(../Images/workspace-background.jpg);
+	background-attachment:fixed;
+}
+.custom-container {
+		margin: 0 auto;
+		padding: 2vmin 7vmin;
+		border-radius: 30px;
+		background-color: white;
+  align-items: center;
+  justify-content: center;
+		top: 55%;
+  		left: 50%;
+  		-ms-transform: translate(-50%, -50%);
+  		transform: translate(-50%, -50%);
+		position: absolute;
+	border: 4px solid $accent-color;
+	}
+@media screen and (min-width: 320px) {
+.custom-container {
+		width: calc(60vw + 130px);
+	}
+}
+@media screen and (max-width: 767px) {
+	.event-name {
+			font-size: calc(1vw + 30px)!important;
+		}
+}
+.event-details {
+			display: flex;
+			flex-basis: 100%;
+			flex-direction: column;
+			font-family: $gill-sans-font;
+		}
+
+		.event-name {
+			font-weight: bold;
+			font-family: $gill-sans-font;
+			font-size: calc(3vw + 20px);
+
+		}
+        .event-owner{
+	font-size: calc(1.1vw + 12px);
+	margin-bottom: 10px;
+	font-family: $gill-sans-font;
+}
+		.event-date {
+			font-size: calc(1.1vw + 12px);
+			margin-bottom: 10px;
+			font-family: $gill-sans-font;
+		}
+
+		.event-description {
+			font-size: calc(1.1vw + 12px);
+			font-family: $gill-sans-font;
+			margin-bottom: 10px;
+			text-align: justify;
+        }
+		hr {
+  border: 0;
+  clear:both;
+			margin-top: 2px!important;
+	width: 100%;
+  background-color:$accent-color;
+  height: 5px!important;
+}
+.attached-user{
+	font-size: calc(1.1vw + 12px);
+	margin-bottom: 9px;
+}
+ul{
+	margin: 0;
+}
+.custom-button {
+	padding: 5px 10px;
+	font-size: calc(0.5vw + 10px);
+	border: 2px solid $accent-color!important;
+	text-align: center;
+	background-color: $secondary-color;
+	border-radius: 10px;
+	color: #fff;
+	cursor: pointer;
+}

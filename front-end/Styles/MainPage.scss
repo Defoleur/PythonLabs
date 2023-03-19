@@ -1,0 +1,52 @@
+@import "Navbar";
+@import "Fonts";
+h1 {
+  font-size: calc(10vw + 30px)!important; /* Use vw (viewport width) instead of em or px */
+  text-align: center;
+  font-family: $gill-sans-font;
+}
+label{
+  font-size: calc(1vw + 20px)!important;
+  font-family: $gill-sans-font;
+}
+li {
+  margin: 1em 0; /* Use em instead of px */
+  padding: 0.5em 1em;
+}
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 91vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: $secondary-color;
+}
+body{
+
+}
+main > div {
+  text-align: center;
+}
+.main-div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 100%; /* Set the width to 100% */
+}
+body {
+  overflow: hidden;
+}
+main a{
+  color: black;
+  text-decoration: underline;
+  font-size: calc(1vw + 14px)!important;
+  font-family: $gill-sans-font;
+}

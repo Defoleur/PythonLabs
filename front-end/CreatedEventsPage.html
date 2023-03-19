@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Events</title>
+<link rel="stylesheet" href="Styles/CreatedEventsPage.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-sm navbar-light rounded-bottom bg-white justify-content-between">
+  <a class="navbar-brand" href="#">EventCD🗓️</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse w-100 order-3 dual-collapse2" id="navbarNavAltMarkup">
+    <div class="navbar-nav navbar-nav-left d-none d-sm-block">
+      <a class="nav-item nav-link">Add new event!</a>
+    </div>
+      <div class="navbar-nav navbar-nav-left d-none d-sm-block">
+      <a class="nav-item nav-link" href="RegistrationPage.html">Search for events!</a>
+    </div>
+    <div class="navbar-nav navbar-nav-right ml-auto">
+      <a class="nav-item nav-link" href="LoginPage.html"><img class="profile-pic" src="Images/mikey.png" alt="My Profile Picture"></a>
+    </div>
+    <div class="navbar-nav d-none d-sm-block">
+      <a class="nav-item nav-link">Mikey</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row flex-grow-0">
+      <div class="col-md-4 col-12 flex-column mx-auto">
+<div class="event-container filter-container flex-column">
+  <div class="filters">
+  	<h3>Filters</h3>
+  	<input type="text" placeholder="Search by title..."/>
+      <input type="text" placeholder="Search by owner..."/>
+      <div><input type="time"><input type="time"></div>
+      <input type="date">
+  	<select>
+  		<option value="">Select Category</option>
+  		<option value="1">All events</option>
+  		<option value="2">My events</option>
+  		<option value="3">Attached events</option>
+  	</select>
+      <button class="btn btn-primary btn-sm btn-search">Search!</button>
+</div>
+    </div>
+          </div>
+      <hr class="hr-separator">
+<div class="col-md-8 col-12 mr-md-0  main">
+    <div class="container-fluid">
+		<div class="row ">
+			<div class="col-lg-5  event-container">
+				<div class="event">
+					<div class="event-details">
+						<div class="event-name">Pizza Time!🍕</div>
+                        <hr>
+                        <div class="event-owner">
+                            <img class="profile-pic" src="Images/mikey.png" alt="My Profile Picture"> Mikey</div>
+						<div class="event-date">📅: 10th April, 2023</div>
+                        <div class="event-date">🕰️: 18:00 - 19:00</div>
+						<div class="event-description">Description: Let's take some rest brothers and eat gorgeous pepperoni pizza😋</div>
+						<button class="btn btn-primary btn-sm">More info!</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-5  event-container">
+				<div class="event">
+
+					<div class="event-details">
+						<div class="event-name">Van Repairing!🔧</div>
+                        <hr>
+                        <div class="event-owner">
+                            <img class="profile-pic" src="Images/donnie.png" alt="My Profile Picture"> Donnie</div>
+						<div class="event-date">📅: 11th April, 2023</div>
+                        <div class="event-date">🕰️: 13:00 - 16:00</div>
+						<div class="event-description">Description: Mikey! Don't play dumb and help me with Turtle Van!</div>
+						<button class="btn btn-primary btn-sm">More info!</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-5  box event-container">
+				<div class="event item">
+
+					<div class="event-details">
+						<div class="event-name">Dojo Training!🥋</div>
+                        <hr>
+                        <div class="event-owner">
+                            <img class="profile-pic" src="Images/leo.png" alt="My Profile Picture"> Leo</div>
+						<div class="event-date">📅: 12th April, 2023</div>
+                        <div class="event-date">🕰️: 16:00 - 17:30</div>
+						<div class="event-description">Description: Practice makes perfect!</div>
+						<button class="btn btn-primary btn-sm">More info!</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-5  box event-container">
+				<div class="event item">
+					<div class="event-details">
+						<div class="event-name">1v1 vs Leo!🕹️</div>
+                        <hr>
+                        <div class="event-owner">
+                            <img class="profile-pic" src="Images/raph.png" alt="My Profile Picture"> Raph</div>
+						<div class="event-date">📅: 19th April, 2023</div>
+                        <div class="event-date">🕰️: 22:00 - 23:00</div>
+						<div class="event-description">Description: I'm ready for revenge!</div>
+						<button class="btn btn-primary btn-sm">More info!</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+      </div>
+  </div>
+</div>
+</body>
+</html>
+

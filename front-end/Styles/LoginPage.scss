@@ -1,0 +1,22 @@
+@import "Colors";
+.container {
+		width: calc(30vw + 150px);
+		margin: 0 auto;
+		padding: 5vmin;
+		border-radius: 30px;
+		background-color: white;
+		vertical-align: middle;
+		top: 50%;
+  		left: 50%;
+  		-ms-transform: translate(-50%, -50%);
+  		transform: translate(-50%, -50%);
+		position: absolute;
+  border: 4px solid $accent-color;
+	}
+.body{
+	background-repeat: no-repeat;
+	height: 900px;
+	background-size: cover;
+	background-image: url(../Images/workspace-background.jpg);
+	overflow-y: hidden;
+}

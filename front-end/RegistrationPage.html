@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration</title>
+	<link rel="stylesheet" href="Styles/AuthenticationPages.css">
+    <link rel="stylesheet" href="Styles/RegistrationPage.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="body">
+    <nav>
+        <button onclick="history.back()" class="back-button">&#8592;</button>
+    </nav>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h1 class="text-center">Welcome to EventCD!</h1>
+				<form>
+					<div class="form-group">
+						<label for="username">Username:</label>
+                        <input type="text" required pattern="\w{3,16}" class="form-control" id="username" name="username">
+					</div>
+					<div class="form-group">
+						<label for="password">Password:</label>
+						<input type="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control" id="password" name="password">
+					</div>
+                    <div class="form-group">
+						<label for="password">Confirm password:</label>
+						<input type="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control" id="password" name="password">
+					</div>
+                    <div class="form-group">
+						<label for="first-name">First name (optional):</label>
+                        <input type="text" class="form-control" id="first-name" name="first-name">
+					</div>
+                    <div class="form-group">
+						<label for="last-name">Last name (optional):</label>
+                        <input type="text" class="form-control" id="last-name" name="last-name">
+					</div>
+                    <div class="form-group">
+						<label for="email">Email:</label>
+                        <input type="text" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" id="email" name="email">
+					</div>
+                    <div class="form-group">
+						<label for="phone">Phone:</label>
+                        <input type="text" class="form-control" id="phone" name="phone" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+					</div>
+                    <a href="ProfilePage.html">
+					    <button type="submit" class="btn btn-primary btn-block" >Register</button>
+                    </a>
+                    <label for="password">Have account yet? For login click <a href="LoginPage.html">here</a>.</label>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

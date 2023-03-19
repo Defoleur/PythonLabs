@@ -1,0 +1,74 @@
+.back-button {
+  background-color: #E3CAA5;
+  color: #AD8B73;
+  border: 2px solid #AD8B73;
+  padding: 10px 10px;
+  text-align: center;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+h1 {
+  display: block;
+  font-weight: bold;
+  color: #AD8B73;
+  text-align: center;
+  font-family: "Gill Sans", sans-serif;
+  font-size: calc(1.5vw + 20px) !important;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #AD8B73;
+  font-family: "Gill Sans", sans-serif;
+}
+
+input[type=text], input[type=password] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #E3CAA5;
+  border-radius: 10px;
+  color: #AD8B73;
+  font-family: "Gill Sans", sans-serif;
+  box-sizing: border-box;
+}
+
+input[type=text]:focus {
+  outline: none !important;
+  border: 1px solid #AD8B73;
+}
+
+input[type=password]:focus {
+  outline: none !important;
+  border: 1px solid #AD8B73;
+}
+
+button[type=submit] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #AD8B73;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 10px;
+  font-family: "Gill Sans", sans-serif;
+}
+
+a {
+  color: #AD8B73;
+}
+
+/*# sourceMappingURL=AuthenticationPages.css.map */

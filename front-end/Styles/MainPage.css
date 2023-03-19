@@ -1,0 +1,77 @@
+.navbar {
+  position: sticky !important;
+  top: 0;
+  z-index: 100;
+  border-bottom: 2px solid #AD8B73 !important;
+}
+
+.navbar a {
+  font-family: "Gill Sans", sans-serif;
+  font-size: 20px;
+}
+
+.profile-pic {
+  width: calc(1vw + 25px);
+  height: calc(1vw + 25px);
+  border-radius: 50%;
+  border: 2px solid #AD8B73;
+  object-fit: cover;
+}
+
+h1 {
+  font-size: calc(10vw + 30px) !important; /* Use vw (viewport width) instead of em or px */
+  text-align: center;
+  font-family: "Gill Sans", sans-serif;
+}
+
+label {
+  font-size: calc(1vw + 20px) !important;
+  font-family: "Gill Sans", sans-serif;
+}
+
+li {
+  margin: 1em 0; /* Use em instead of px */
+  padding: 0.5em 1em;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 91vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #E3CAA5;
+}
+
+main > div {
+  text-align: center;
+}
+
+.main-div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 100%; /* Set the width to 100% */
+}
+
+body {
+  overflow: hidden;
+}
+
+main a {
+  color: black;
+  text-decoration: underline;
+  font-size: calc(1vw + 14px) !important;
+  font-family: "Gill Sans", sans-serif;
+}
+
+/*# sourceMappingURL=MainPage.css.map */

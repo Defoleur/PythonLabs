@@ -1,0 +1,59 @@
+.navbar {
+  position: sticky !important;
+  top: 0;
+  z-index: 100;
+  border-bottom: 2px solid #AD8B73 !important;
+}
+
+.navbar a {
+  font-family: "Gill Sans", sans-serif;
+  font-size: 20px;
+}
+
+.profile-pic {
+  width: calc(1vw + 25px);
+  height: calc(1vw + 25px);
+  border-radius: 50%;
+  border: 2px solid #AD8B73;
+  object-fit: cover;
+}
+
+.bio-edit {
+  width: 100% !important;
+  resize: none;
+}
+
+input[type=text], input[type=file], textarea, input[type=time], input[type=date] {
+  display: flex;
+  padding: 3px;
+  width: 100%;
+  font-size: calc(0.9vw + 10px);
+  margin-top: 1px;
+  margin-bottom: 6px;
+  margin-left: 3px;
+  border: 2px solid #E3CAA5;
+  border-radius: 10px;
+  color: black;
+  box-sizing: border-box;
+}
+
+.edit-div {
+  flex-direction: row;
+  display: flex;
+  white-space: nowrap;
+}
+
+.transparent-button {
+  background-color: transparent;
+  border: none;
+  padding: 2px 4px;
+  border-radius: 10%;
+  cursor: pointer;
+}
+
+.attached-user {
+  font-size: calc(0.9vw + 10px);
+  margin-bottom: 9px;
+}
+
+/*# sourceMappingURL=EditEventPage.css.map */

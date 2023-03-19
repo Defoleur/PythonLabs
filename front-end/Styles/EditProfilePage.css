@@ -1,0 +1,52 @@
+input[type=text], input[type=file], textarea {
+  display: flex;
+  padding: 3px;
+  width: 100%;
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 8px;
+  margin-left: 3px;
+  border: 2px solid #E3CAA5;
+  border-radius: 10px;
+  color: black;
+  box-sizing: border-box;
+}
+
+input[type=text]:focus {
+  outline: none !important;
+  border: 2px solid #AD8B73;
+}
+
+.bio-edit {
+  width: 100% !important;
+  resize: none;
+}
+
+.custom-container {
+  top: 57%;
+}
+
+.profile-picture {
+  width: calc(1vw + 30px);
+  height: calc(1vw + 30px);
+  margin: 0 5px;
+  border-radius: 50%;
+  border: 2px solid #AD8B73;
+  object-fit: cover;
+}
+
+.profile-attribute {
+  font-size: calc(0.5vw + 15px);
+  margin-bottom: 10px;
+}
+
+.profile-bio {
+  white-space: nowrap;
+}
+
+.profile-attribute {
+  font-style: italic !important;
+  font-weight: normal !important;
+}
+
+/*# sourceMappingURL=EditProfilePage.css.map */
