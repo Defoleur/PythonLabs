@@ -1,0 +1,48 @@
+.main-div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h1 {
+  font-size: calc(10vw + 30px) !important; /* Use vw (viewport width) instead of em or px */
+  font-family: "Gill Sans", sans-serif;
+  text-align: center;
+}
+
+h2 {
+  font-size: calc(5vw + 20px) !important; /* Use vw (viewport width) instead of em or px */
+  font-family: "Gill Sans", sans-serif;
+  text-align: center;
+}
+
+label {
+  font-size: calc(1vw + 15px) !important;
+  text-align: center;
+  font-family: "Gill Sans", sans-serif;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #E3CAA5;
+}
+
+body {
+  overflow: hidden;
+}
+
+main > div {
+  text-align: center;
+}
+
+.custom-button {
+  color: black !important;
+}
+
+/*# sourceMappingURL=ErrorPage.css.map */
