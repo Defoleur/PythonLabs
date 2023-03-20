@@ -12,9 +12,9 @@
 	font-size: 20px;
 }
 .profile-pic {
-  width: calc(1vw + 25px);
-  height: calc(1vw + 25px);
-  border-radius: 50%;
+  	width: calc(1vw + 25px);
+	height: calc(1vw + 25px);
+  	border-radius: 50%;
 	border: 2px solid $accent-color;
-  object-fit: cover;
+  	object-fit: cover;
 }

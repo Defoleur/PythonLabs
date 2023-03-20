@@ -57,7 +57,7 @@
     margin-bottom: 3px;
   }
   .main {
-    border-left: 0px transparent !important;
+    border-left: 0 transparent !important;
   }
 }
 .event-container {
@@ -156,13 +156,9 @@ hr {
   border: 1px solid #AD8B73;
 }
 
-.filters input[type=time] {
+.filters input[type=time], input[type=date] {
   width: 50%;
-  font-family: "Gill Sans", sans-serif;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: 1px solid #AD8B73;
+  font-size: 14px;
 }
 
 .filters select {
@@ -176,8 +172,7 @@ hr {
 }
 
 .main {
-  padding: 10px;
-  padding-right: 0;
+  padding: 10px 10px 10px 0;
   border-left: 2px solid #AD8B73;
 }
 

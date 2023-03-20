@@ -18,6 +18,17 @@
   object-fit: cover;
 }
 
+.custom-button {
+  padding: 5px 10px;
+  font-size: calc(0.5vw + 10px);
+  border: 2px solid #AD8B73 !important;
+  text-align: center;
+  background-color: #E3CAA5;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+}
+
 @media screen and (min-width: 500px) {
   .custom-container {
     width: calc(50vw + 150px);
@@ -107,17 +118,6 @@ h1 {
 
 .right {
   width: 75%;
-}
-
-.custom-button {
-  padding: 5px 10px;
-  font-size: calc(0.5vw + 10px);
-  border: 2px solid #AD8B73 !important;
-  text-align: center;
-  background-color: #E3CAA5;
-  border-radius: 10px;
-  color: #fff;
-  cursor: pointer;
 }
 
 .centered-div {
