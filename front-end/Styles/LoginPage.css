@@ -18,7 +18,7 @@
   height: 900px;
   background-size: cover;
   background-image: url(../Images/workspace-background.jpg);
-  overflow-y: hidden;
+  overflow: hidden !important;
 }
 
 /*# sourceMappingURL=LoginPage.css.map */
