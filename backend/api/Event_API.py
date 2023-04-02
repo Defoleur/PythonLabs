@@ -6,9 +6,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.exc import IntegrityError
 
-from api.Auth import auth
-from errors.auth_errors import NotSufficientRights
-from models.models import Event, EventUser, User, Role
+from backend.api.Auth import auth
+from backend.errors.auth_errors import NotSufficientRights
+from backend.models.models import Event, EventUser, User, Role
 
 engine = create_engine("postgresql://postgres:postgres@localhost:5432/events-calendar")
 Session = sessionmaker(bind=engine)
@@ -22,10 +22,11 @@ event_api = Blueprint('event_api', __name__)
 def get_event_by_id(id):
     event = session.query(Event)
     current_event = event.get(int(id))
+    current_user = session.query(User).get(current_event.user_id)
     if current_event is None:
         return jsonify({"message": 'Event not found'}), 404
     return Response(
-        response=json.dumps(current_event.to_dict()),
+        response=json.dumps(current_event.to_dict(current_user.username)),
         status=200,
         mimetype='application/json'
     )
@@ -115,20 +116,20 @@ def delete_by_id(id):
         return jsonify({"message": 'Delete failed'}), 400
 
 
-@event_api.route("/api/v1/event/<user_id>/created", methods=['GET'])
+@event_api.route("/api/v1/event/<username>/created", methods=['GET'])
 @auth.login_required()
-def created_events(user_id):
-    current_user = session.query(User).get(int(user_id))
+def created_events(username):
+    current_user = session.query(User).filter_by(username=username).first()
     if current_user is None:
         return jsonify({"message":'User not found'}), 404
     if current_user.id != auth.current_user().id and auth.current_user().role != Role.admin:
         raise NotSufficientRights("No access")
-    events = session.query(Event).filter_by(user_id=user_id)
+    events = session.query(Event).filter_by(user_id=current_user.id)
     events_json = []
     if events is None:
         return jsonify({"message": "No events was found"}), 404
     for event in events:
-        events_json.append(event.to_dict())
+        events_json.append(event.to_dict(current_user.username))
     return Response(
         response=json.dumps(events_json),
         status=200,
@@ -149,7 +150,7 @@ def attached_events(user_id):
     if events is None:
         return jsonify({"message": "No events was found"}), 404
     for event in events:
-        events_json.append(event.event.to_dict())
+        events_json.append(event.event.to_dict(current_user.username))
     return Response(
         response=json.dumps(events_json),
         status=200,
@@ -199,3 +200,20 @@ def delete_user_from_event(event_id, user_id):
         return jsonify({"message": 'Deleted successfully'}), 200
     except:
         return jsonify({"message": 'Delete failed'}), 400
+
+
+@event_api.route("/api/v1/<event_id>/users", methods=['GET'])
+@auth.login_required()
+def get_event_users(event_id):
+    event_usr = session.query(EventUser)
+    event_users = event_usr.filter_by(event_id=int(event_id))
+    event_users_json = []
+    for user_event in event_users:
+        user_id = user_event.user_id
+        current_user = session.query(User).get(int(user_id))
+        event_users_json.append({"user_id": user_id, "username": current_user.username})
+    return Response(
+        response=json.dumps(event_users_json),
+        status=200,
+        mimetype='application/json'
+    )

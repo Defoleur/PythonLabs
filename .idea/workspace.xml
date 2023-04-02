@@ -2,30 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dbcf8638-0f79-4499-94a2-406af6ca6093" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EventCalendar.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/EventCalendar.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic/README" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/alembic/README" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic/alembic.ini" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/alembic/alembic.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic/env.py" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/alembic/env.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic/generate_all.py" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/alembic/generate_all.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic/script.py.mako" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/alembic/script.py.mako" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic/versions/9e0cf9b0ac21_added_all_tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/alembic/versions/9e0cf9b0ac21_added_all_tables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic/versions/ae1027a6acf_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/alembic/versions/ae1027a6acf_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/Auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/api/Auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/Event_API.py" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/api/Event_API.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/User_API.py" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/api/User_API.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db-test.py.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/db-test.py.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/db.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/errors/auth_errors.py" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/errors/auth_errors.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/get-poetry" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/get-poetry" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getInfo.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/getInfo.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/models/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/startProgram.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/startProgram.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/functional_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/tests/functional_tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/tests/unit_tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/PythonLabs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PythonLabs.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/EventCalendar.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/EventCalendar.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/alembic/README" beforeDir="false" afterPath="$PROJECT_DIR$/backend/alembic/README" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/alembic/alembic.ini" beforeDir="false" afterPath="$PROJECT_DIR$/backend/alembic/alembic.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/alembic/env.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/alembic/env.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/alembic/generate_all.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/alembic/generate_all.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/alembic/script.py.mako" beforeDir="false" afterPath="$PROJECT_DIR$/backend/alembic/script.py.mako" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/alembic/versions/9e0cf9b0ac21_added_all_tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/alembic/versions/9e0cf9b0ac21_added_all_tables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/alembic/versions/ae1027a6acf_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/alembic/versions/ae1027a6acf_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/api/Auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/Auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/api/Event_API.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/Event_API.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/api/User_API.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/User_API.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/db-test.py.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db-test.py.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/errors/auth_errors.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/errors/auth_errors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/get-poetry" beforeDir="false" afterPath="$PROJECT_DIR$/backend/get-poetry" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/getInfo.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/backend/getInfo.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/models/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/startProgram.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/backend/startProgram.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/tests/functional_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/tests/functional_tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/tests/unit_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/tests/unit_tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/CreatedEventsPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/CreatedEventsPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/EventInfoPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/EventInfoPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/LoginPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/LoginPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/ProfilePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/ProfilePage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/RegistrationPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/RegistrationPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/Styles/AuthenticationPages.css" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/Styles/AuthenticationPages.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/Styles/AuthenticationPages.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/Styles/AuthenticationPages.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/Styles/EventInfoPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/Styles/EventInfoPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/Styles/EventInfoPage.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/Styles/EventInfoPage.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/Styles/EventInfoPage.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/Styles/EventInfoPage.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +52,7 @@
         <option value="CSS File" />
         <option value="HTML File" />
         <option value="SCSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -84,11 +99,33 @@
       <recent name="$PROJECT_DIR$/back-end" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.EditEventPage.html">
+  <component name="RunManager" selected="Flask server.Flask">
     <configuration name="EditEventPage.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/PythonLabs/front-end/EditEventPage.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="RegistrationPage.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/PythonLabs/front-end/RegistrationPage.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="Event_API" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PythonLabs" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/back-end/api" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/back-end/api/Event_API.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
     <configuration name="PythonLabs" type="PythonConfigurationType" factoryName="Python">
@@ -113,39 +150,47 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="generate_all" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="PythonLabs" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/alembic" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/alembic/generate_all.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="Flask" type="Python.FlaskServer" nameIsGenerated="true">
       <module name="PythonLabs" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="$USER_HOME$/Library/Caches/pypoetry/virtualenvs/pythonlabs-X9Pn6sir-py3.10/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/back-end" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backend" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for unit_tests.TestUser.test_username" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="PythonLabs" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backend/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;unit_tests.TestUser.test_username&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests in unit_tests.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="PythonLabs" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backend/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/backend/tests/unit_tests.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="Unittests" type="tests" factoryName="Unittests">
@@ -159,7 +204,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_pattern" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;discover -s tests -p \u0027*_tests.py\u0027&quot;" />
+      <option name="_new_additionalArguments" value="&quot;discover -s backend/tests -p \u0027*_tests.py\u0027&quot;" />
       <option name="_new_target" value="&quot;&quot;" />
       <option name="_new_targetType" value="&quot;CUSTOM&quot;" />
       <method v="2" />
@@ -169,14 +214,18 @@
       <item itemvalue="JavaScript Debug.EditEventPage.html" />
       <item itemvalue="JavaScript Debug.RegistrationPage.html" />
       <item itemvalue="Python.PythonLabs" />
-      <item itemvalue="Python.generate_all" />
+      <item itemvalue="Python.Event_API" />
       <item itemvalue="Python tests.Unittests" />
+      <item itemvalue="Python tests.Python tests for unit_tests.TestUser.test_username" />
+      <item itemvalue="Python tests.Python tests in unit_tests.py" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests in unit_tests.py" />
+        <item itemvalue="Python tests.Python tests for unit_tests.TestUser.test_username" />
+        <item itemvalue="Python.Event_API" />
         <item itemvalue="JavaScript Debug.EditEventPage.html" />
         <item itemvalue="JavaScript Debug.RegistrationPage.html" />
-        <item itemvalue="Python.generate_all" />
       </list>
     </recent_temporary>
   </component>
@@ -196,7 +245,14 @@
       <workItem from="1678783332809" duration="537000" />
       <workItem from="1679054236608" duration="12496000" />
       <workItem from="1679126355084" duration="21707000" />
-      <workItem from="1679212065282" duration="24932000" />
+      <workItem from="1679212065282" duration="25058000" />
+      <workItem from="1679306146050" duration="10114000" />
+      <workItem from="1679381572785" duration="122000" />
+      <workItem from="1679387447365" duration="650000" />
+      <workItem from="1680261938492" duration="793000" />
+      <workItem from="1680262815259" duration="6738000" />
+      <workItem from="1680351315969" duration="83000" />
+      <workItem from="1680422261520" duration="23030000" />
     </task>
     <servers />
   </component>
@@ -214,10 +270,38 @@
       </map>
     </option>
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/backend/api/Event_API.py</url>
+          <line>167</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/backend/api/Event_API.py</url>
+          <line>166</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/backend/api/Event_API.py</url>
+          <line>170</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/backend/api/Event_API.py</url>
+          <line>171</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/PythonLabs$Flask.coverage" NAME="Flask Coverage Results" MODIFIED="1678614206159" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/back-end" />
-    <SUITE FILE_PATH="coverage/PythonLabs$Unittests.coverage" NAME="Unittests Coverage Results" MODIFIED="1678199814614" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/PythonLabs$.coverage" NAME=" Coverage Results" MODIFIED="1680263766768" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/tests" />
+    <SUITE FILE_PATH="coverage/PythonLabs$Flask.coverage" NAME="Flask Coverage Results" MODIFIED="1680445155379" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
+    <SUITE FILE_PATH="coverage/PythonLabs$Unittests.coverage" NAME="Unittests Coverage Results" MODIFIED="1680264229651" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/PythonLabs$generate_all.coverage" NAME="generate_all Coverage Results" MODIFIED="1678199780577" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/alembic" />
+    <SUITE FILE_PATH="coverage/PythonLabs$Event_API.coverage" NAME="Event_API Coverage Results" MODIFIED="1680262758348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/back-end/api" />
     <SUITE FILE_PATH="coverage/PythonLabs$PythonLabs.coverage" NAME="PythonLabs Coverage Results" MODIFIED="1678195823520" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

@@ -1,11 +1,13 @@
 from flask import Flask, jsonify
-from api.Event_API import event_api
-from api.User_API import user_api
-from errors.auth_errors import *
+from backend.api.Event_API import event_api
+from backend.api.User_API import user_api
+from backend.errors.auth_errors import *
+from flask_cors import CORS
 
 
 def create_app():
     app = Flask(__name__)
+    CORS(app)
     app.register_blueprint(event_api)
     app.register_blueprint(user_api)
 

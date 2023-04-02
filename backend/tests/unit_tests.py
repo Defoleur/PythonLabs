@@ -1,6 +1,6 @@
 from datetime import date, time
 from unittest import main, TestCase
-from models.models import User, Role, Event
+from backend.models.models import User, Role, Event
 
 
 def wrong_password(user):
@@ -74,13 +74,13 @@ class TestUser(TestCase):
 
 
 class TestEvent(TestCase):
-    event = Event(title="Student's day", content="The best day of my life", date=date(2022, 12, 10),
+    event = Event(title="Student's day", content="The best day of my life", date=date(2023, 12, 10),
                   endTime=time(19, 00, 00), startTime=time(18, 00, 00))
 
     def test_event_insert(self):
         self.assertEqual(self.event.title, "Student's day")
         self.assertEqual(self.event.content, "The best day of my life")
-        self.assertEqual(self.event.date, date(2022, 12, 10))
+        self.assertEqual(self.event.date, date(2023, 12, 10))
         self.assertEqual(self.event.startTime, time(18, 00, 00))
         self.assertEqual(self.event.endTime, time(19, 00, 00))
 

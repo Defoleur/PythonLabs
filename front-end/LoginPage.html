@@ -4,6 +4,7 @@
 	<title>Login!</title>
 	<link rel="stylesheet" href="./Styles/AuthenticationPages.css">
     <link rel="stylesheet" href="./Styles/LoginPage.css">
+    <script src="./AJAX/login.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="body">
@@ -21,7 +22,7 @@
 						<label for="password">Password:</label>
 						<input type="password" class="form-control" id="password" name="password">
 					</div>
-					<button type="submit" class="btn btn-primary btn-block">Login</button>
+					<button type="button" class="btn btn-primary btn-block" onclick="onClick()">Login</button>
                     <label for="password">Haven't account yet? For registration click <a href="RegistrationPage.html">here</a>.</label>
 				</form>
 			</div>

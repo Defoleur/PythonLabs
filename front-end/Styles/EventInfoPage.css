@@ -116,4 +116,8 @@ ul {
   margin-bottom: 9px;
 }
 
+.delete-button {
+  background-color: #FF6961 !important;
+}
+
 /*# sourceMappingURL=EventInfoPage.css.map */

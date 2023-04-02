@@ -6,10 +6,10 @@ from flask import request, Response, jsonify
 from flask import Blueprint
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from errors.auth_errors import NotSufficientRights
-from api.Auth import auth
+from backend.errors.auth_errors import NotSufficientRights
+from backend.api.Auth import auth
 
-from models.models import User, Role
+from backend.models.models import User, Role
 
 user_api = Blueprint('user_api', __name__)
 
@@ -34,7 +34,7 @@ def add_user():
     return jsonify({"message": "User successfully created!"}), 200
 
 
-@user_api.route("/api/v1/user/login", methods=['GET'])
+@user_api.route("/api/v1/user/login", methods=['POST'])
 def user_login():
     try:
         data = request.get_json()
@@ -43,16 +43,16 @@ def user_login():
     if 'password' in data and 'username' in data:
         with Session.begin() as session:
             user = session.query(User).filter_by(username=data['username']).first()
-            if not bcrypt.checkpw(data['password'].encode("utf-8"), user.password.encode("utf-8")):
-                return jsonify({"message": "Invalid password or username specified"}), 404
 
+            if user is None or not bcrypt.checkpw(data['password'].encode("utf-8"), user.password.encode("utf-8")):
+                return jsonify({"message": "Invalid password or username specified"}), 404
             token = base64.encodebytes(f"{data['username']}:{data['password']}".encode('utf-8'))
             return jsonify({'basic': token.decode("utf-8").replace("\n", "")}), 200
     return jsonify({"message": "Invalid request body, specify password and username, please!"}), 400
 
 
 @user_api.route("/api/v1/user/<username>", methods=['GET'])
-@auth.login_required(role='admin')
+@auth.login_required()
 def get_user(username):
     user = session.query(User).filter_by(username=username).first()
     if user is None:

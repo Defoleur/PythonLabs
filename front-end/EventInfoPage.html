@@ -2,55 +2,32 @@
 <html>
 <meta charset="UTF-8">
 <head>
-	<title>Pizza Time!🍕</title>
+	<title id="tab-name">Pizza Time!🍕</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="./Styles/EventInfoPage.css">
+    <script src="./AJAX/eventInfo.js"></script>
+    <script src="./AJAX/navbar.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-sm navbar-light rounded-bottom bg-white justify-content-between">
-  <a class="navbar-brand" href="#">EventCD🗓️</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse w-100 order-3 dual-collapse2" id="navbarNavAltMarkup">
-    <div class="navbar-nav navbar-nav-left d-none d-sm-block">
-      <a class="nav-item nav-link">Add new event!</a>
-    </div>
-      <div class="navbar-nav navbar-nav-left d-none d-sm-block">
-      <a class="nav-item nav-link">Search for events!</a>
-    </div>
-    <div class="navbar-nav navbar-nav-right ml-auto">
-      <a class="nav-item nav-link"><img class="profile-pic" src="./Images/mikey.png" alt="My Profile Picture"></a>
-    </div>
-    <div class="navbar-nav d-none d-sm-block">
-      <a class="nav-item nav-link">Mikey</a>
-    </div>
-  </div>
+<nav class="navbar navbar-expand-sm navbar-light rounded-bottom bg-white justify-content-between" id="navigation">
 </nav>
 	<div class="custom-container">
         <div class="event-details">
-            <div class="event-name">Pizza Time!🍕</div>
-            <hr>
+            <div class="event-name" id="event-name">${data.title}</div>
+        <hr>
             <div class="row gx-5">
-                <div class="col-md-6">
-                    <div class="event-owner">
-                        Owner: <img class="profile-pic" src="./Images/mikey.png" alt="My Profile Picture"> Mikey</div>
-                    <div class="event-date">Date 📅: 10th April, 2023</div>
-                    <div class="event-date">Time 🕰️: 18:00 - 19:00</div>
-                    <div class="event-description">Description: Let's take some rest brothers and eat gorgeous pepperoni pizza😋</div>
-                </div>
-                <div class="col-md-6">
-                    <div class="event-owner">Attached to:</div>
-                    <ul>
-                        <li class="attached-user"><img class="profile-pic" src="./Images/leo.png" alt="List Picture"> Leo</li>
-                        <li class="attached-user"><img class="profile-pic" src="./Images/donnie.png" alt="List Picture"> Donnie</li>
-                        <li class="attached-user"><img class="profile-pic" src="./Images/raph.png" alt="List Picture"> Raph</li>
-                    </ul>
-                </div>
-            </div>
-            <button class="custom-button">Edit this event!</button>
+      <div class="col-md-6"><div id="event-info-container"></div></div>
+           <div class="col-md-6">
+               <div class="event-owner">Attached to:</div>
+               <div id="users"></div>
+           </div>
         </div>
+            <div>
+            <button class="custom-button">Edit this event!</button>
+            <button class="custom-button delete-button">Delete this event!</button>
+                </div>
+    </div>
     </div>
 </body>
 </html>

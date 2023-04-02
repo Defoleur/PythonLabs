@@ -4,7 +4,7 @@ import bcrypt
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from models.models import User
+from backend.models.models import User
 
 auth_bp = Blueprint('auth', __name__)
 auth = HTTPBasicAuth()

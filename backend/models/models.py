@@ -114,14 +114,16 @@ class Event(Base):
     user = relationship("User")
     event_users = relationship("EventUser", cascade="all, delete")
 
-    def to_dict(self) -> dict:
+    def to_dict(self, username) -> dict:
         return {
+            'id': self.id,
             'title': self.title,
             'content': self.content,
             'date': str(self.date),
             'startTime': str(self.startTime),
             'endTime': str(self.endTime),
-            'user_id': self.user_id
+            'user_id': self.user_id,
+            'username': username
         }
 
     @validates('startTime', 'endTime')

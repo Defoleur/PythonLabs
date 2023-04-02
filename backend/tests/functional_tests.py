@@ -1,5 +1,5 @@
 from flask_testing import TestCase
-from app import create_app
+from backend.app import create_app
 
 
 class UserAPITest(TestCase):
