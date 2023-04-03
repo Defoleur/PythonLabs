@@ -29,6 +29,10 @@
   cursor: pointer;
 }
 
+.delete-button {
+  background-color: #FF6961 !important;
+}
+
 .event-details {
   display: flex;
   flex-basis: 100%;

@@ -29,6 +29,10 @@
   cursor: pointer;
 }
 
+.delete-button {
+  background-color: #FF6961 !important;
+}
+
 @media screen and (min-width: 500px) {
   .custom-container {
     width: calc(50vw + 150px);

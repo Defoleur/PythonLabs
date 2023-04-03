@@ -9,4 +9,8 @@
   cursor: pointer;
 }
 
+.delete-button {
+  background-color: #FF6961 !important;
+}
+
 /*# sourceMappingURL=Buttons.css.map */

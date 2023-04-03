@@ -98,6 +98,10 @@ body {
   cursor: pointer;
 }
 
+.delete-button {
+  background-color: #FF6961 !important;
+}
+
 hr {
   border: 0;
   clear: both;
@@ -114,10 +118,6 @@ ul {
 .attached-user {
   font-size: calc(1.1vw + 12px);
   margin-bottom: 9px;
-}
-
-.delete-button {
-  background-color: #FF6961 !important;
 }
 
 /*# sourceMappingURL=EventInfoPage.css.map */

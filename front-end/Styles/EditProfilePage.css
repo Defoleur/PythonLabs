@@ -9,6 +9,10 @@
   cursor: pointer;
 }
 
+.delete-button {
+  background-color: #FF6961 !important;
+}
+
 .navbar {
   position: sticky !important;
   top: 0;
@@ -38,6 +42,10 @@
   border-radius: 10px;
   color: #fff;
   cursor: pointer;
+}
+
+.delete-button {
+  background-color: #FF6961 !important;
 }
 
 @media screen and (min-width: 500px) {
