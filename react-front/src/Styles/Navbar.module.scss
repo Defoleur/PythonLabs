@@ -1,0 +1,36 @@
+@import "./Colors.module";
+@import "./Fonts.module";
+.navbar-custom{
+	top: 0;
+	z-index: 100;
+	height: 10vh;
+	justify-content: space-between;
+	border-bottom: 2px solid $accent-color!important;
+}
+
+.container-nav{
+	width: 100vw!important;
+}
+
+.navbar-custom a{
+	font-family: $gill-sans-font;
+	font-size: calc(0.6vw + 17px);
+	margin-right: 5px;
+}
+.navbar-brand{
+	margin-left: 15px!important;
+	margin-right: 15px!important;
+}
+.link{
+	color: black;
+	text-decoration: none;
+}
+
+.profile-pic {
+  	width: calc(1vw + 30px);
+	height: calc(1vw + 30px);
+  	border-radius: 50%;
+	border: 2px solid $accent-color;
+  	object-fit: cover;
+}
+

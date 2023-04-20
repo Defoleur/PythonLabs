@@ -1,0 +1,41 @@
+@import "./Fonts.module";
+@import "./Colors.module";
+.h1 {
+  font-size: calc(10vw + 30px)!important; /* Use vw (viewport width) instead of em or px */
+  text-align: center;
+  font-family: $gill-sans-font;
+}
+.label{
+  font-size: calc(3vw + 5px)!important;
+  font-family: $gill-sans-font;
+  text-align: center!important;
+  margin: 3px;
+}
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  margin-top: 10vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: $secondary-color;
+}
+
+.main-div {
+justify-content: center;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.body {
+  overflow: hidden;
+}
+.main a{
+  color: black;
+  text-decoration: underline;
+  text-align: center;
+  font-size: calc(1vw + 14px)!important;
+  font-family: $gill-sans-font;
+}

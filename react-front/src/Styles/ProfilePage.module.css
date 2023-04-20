@@ -1,0 +1,129 @@
+@import "Colors.module.css";
+@import "Fonts.module.css";
+.custom-button {
+  padding: 5px 10px;
+  font-size: calc(0.5vw + 10px);
+  border: 2px solid #AD8B73 !important;
+  text-align: center;
+  background-color: #E3CAA5;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  margin: 2px;
+}
+
+.delete-button {
+  background-color: #FF6961 !important;
+}
+
+@media screen and (min-width: 500px) {
+  .custom-container {
+    width: calc(50vw + 150px);
+  }
+}
+.custom-container {
+  margin: 0 auto;
+  padding: 0;
+  border-radius: 30px;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  top: 55%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  position: absolute;
+  border: 4px solid #AD8B73;
+}
+
+@media screen and (min-width: 320px) {
+  .custom-container {
+    width: calc(50vw + 130px);
+  }
+}
+.body-div {
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 10vh;
+  height: 90vh;
+  background-image: url(../workspace-background.jpg);
+  background-attachment: fixed;
+  overflow-block: auto;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 0;
+  font-size: calc(1.5vw + 20px);
+  font-family: "Gill Sans", sans-serif;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.text {
+  font-family: "Gill Sans", sans-serif;
+  font-size: calc(0.5vw + 15px);
+}
+
+.profile-attribute {
+  font-weight: bold;
+  margin-right: 4px;
+  color: black;
+}
+
+.profile-data {
+  font-style: italic;
+}
+
+.profile-avatar {
+  width: calc(4.5vw + 100px);
+  height: calc(4.5vw + 100px);
+  margin-top: 10px;
+  border-radius: 50%;
+  border: 6px solid #AD8B73;
+  object-fit: cover;
+  position: center;
+}
+
+.profile-name {
+  font-size: calc(1.5vw + 15px);
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-align: center;
+  font-family: "Gill Sans", sans-serif;
+}
+
+.profile-bio {
+  margin-bottom: 5px;
+  display: flex;
+}
+
+.left {
+  width: 25%;
+}
+
+.right {
+  width: 75%;
+}
+
+.centered-div {
+  background-color: #E3CAA5;
+  align-items: center;
+  display: flex;
+  border-radius: 27px;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  border-bottom: 4px solid #AD8B73;
+}
+
+.profile-details {
+  margin: 2vmin 4vmin 2vmin 4.5vmin;
+}
+
+/*# sourceMappingURL=ProfilePage.module.css.map */

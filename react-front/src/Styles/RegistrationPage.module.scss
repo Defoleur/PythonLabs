@@ -1,0 +1,26 @@
+@import "./Colors.module";
+@import "./Fonts.module";
+.container-custom-registration {
+		width: calc(40vw + 150px)!important;
+		padding: 3vmin;
+		border-radius: 30px;
+		background-color: white;
+		vertical-align: middle;
+	margin-top: 10px;
+	horiz-align: center;
+	margin-left: auto;
+    margin-right: auto;
+	border: 4px solid $accent-color;
+	display: flow;
+	}
+.body-registration{
+	margin-top: 10vh;
+	background-repeat: no-repeat;
+	height: 90vh;
+	background-size: cover;
+	background-image: url(../workspace-background.jpg);
+	overflow-x: hidden;
+}
+input:invalid{
+	border-color: #FF6961;
+}

@@ -1,0 +1,23 @@
+@import "./Colors.module";
+.container-custom {
+		width: calc(35vw + 150px)!important;
+		margin: 0 auto;
+		padding: 5vmin;
+		border-radius: 30px;
+		background-color: white;
+		vertical-align: middle;
+		top: 50%;
+  		left: 50%;
+  		-ms-transform: translate(-50%, -50%);
+  		transform: translate(-50%, -50%);
+		position: absolute;
+  border: 4px solid $accent-color;
+	}
+.body{
+	background-repeat: no-repeat;
+	height: 90vh;
+	margin-top: 10vh;
+	background-size: cover;
+	background-image: url(../workspace-background.jpg);
+	overflow-y: hidden!important;
+}

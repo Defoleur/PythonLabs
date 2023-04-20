@@ -1,0 +1,200 @@
+@import "./Colors.module";
+@import "./Fonts.module";
+@media screen and (min-width: 768px) {
+
+	.event-details {
+		width: calc(30vw + 120px);
+		margin: 10px auto;
+	}
+	.filter-container{
+		width: calc(20vw + 70px);
+	}
+	.hr-separator{
+		display: none;
+	}
+	.event-name {
+		font-weight: bold;
+		font-size: calc(1.5vw + 10px);
+		margin-bottom: 3px;
+	}
+}
+@media screen and (min-width: 1030px){
+	.event-container {
+		width: 40%//calc(20vw + 90px);
+	}
+}
+@media screen and (max-width: 1029px){
+	.event-container {
+		width: 100vw;
+		margin: 10px auto;
+	}
+}
+@media screen and (max-width: 767px) {
+	.event-details {
+		width: calc(20vw + 70px);
+		margin: 10px auto;
+	}
+	.filter-container{
+		width: calc(95vw - 30px);
+		margin: 20px;
+	}
+	.event-name {
+		font-weight: bold;
+		font-size: calc(5vw + 10px);
+		margin-bottom: 3px;
+	}
+	.main{
+		border-left: 0 transparent!important;
+	}
+}
+.event-container {
+	margin: 10px 20px auto;
+	border-radius: 30px;
+	background-color: white;
+	height: inherit;
+	padding:10px;
+	border: 4px solid $accent-color;
+}
+.hr-separator{
+	width: 50%;
+}
+.filter-container{
+	border-radius: 30px;
+	margin: 20px auto;
+	overflow-y: auto;
+	padding: 3px!important;
+	background-color: white;
+	border: 4px solid $accent-color;
+}
+.event {
+	display: flex;
+	flex-direction: row;
+	margin: 0 10px;
+}
+.event-image {
+	margin-right: 20px;
+}
+.event-details {
+	display: flex;
+	flex-basis: 100%;
+	flex-direction: column;
+	font-family: $gill-sans-font;
+}
+
+.event-name {
+	font-weight: bold;
+	font-family: $gill-sans-font;
+}
+
+.event-date {
+	font-size: 1.4rem;
+	margin-bottom: 10px;
+	font-family: $gill-sans-font;
+}
+
+.event-description {
+	font-size: 1rem;
+	font-family: $gill-sans-font;
+	text-align: justify;
+  	text-justify: inter-word;
+	margin-bottom: 10px;
+}
+.body{
+	background-color: $secondary-color!important;
+	height: 100%;
+	min-height: 90vh;
+	margin-top: 10vh;
+}
+.hr {
+  	border: 0;
+  	clear:both;
+	width: 100%;
+	background-color:$accent-color;
+  	height: 3px!important;
+}
+
+.box{
+  background-clip:padding-box;
+}
+.box .inner {
+    background-color: #fff;
+}
+
+.filters {
+	margin-top: 10px;
+	padding: 10px;
+}
+.filters h3 {
+	margin-top: 0;
+	font-family: $gill-sans-font;
+}
+.filters input {
+	width: 100%;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	font-family: $gill-sans-font;
+	border: 1px solid $accent-color;
+}
+.filters input[type="time"], input[type="date"] {
+	width: 50%;
+	font-size: 14px;
+}
+.filters select {
+	width: 100%;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+
+	font-family: $gill-sans-font;
+	border: 1px solid $accent-color;
+}
+.main {
+	padding: 10px 10px 10px 0;
+	border-left: 2px solid $accent-color;
+	min-height: 90vh;
+}
+
+.col-md-8{
+	position: center!important;
+}
+
+.event-owner{
+	font-size: 1.5rem;
+	margin-bottom: 10px;
+	font-family: $gill-sans-font;
+}
+
+.btn-primary{
+	background-color: $secondary-color!important;
+	border-radius: 10px!important;
+	border-color: $accent-color!important;
+	color: #fff;
+}
+
+.btn-search{
+	margin-top: 10px;
+			margin-bottom: 10px;
+	width: 100%;
+	border-radius: 5px!important;
+}
+
+.profile-pic {
+  	width: calc(1vw + 30px);
+	height: calc(1vw + 30px);
+  	border-radius: 50%;
+	border: 2px solid $accent-color;
+  	object-fit: cover;
+}
+
+.events-container{
+	flex-wrap: wrap;
+	display:flex;
+	flex-basis: 100%;
+	align-items: center;
+	justify-content: center;
+	align-content: center;
+}
+
