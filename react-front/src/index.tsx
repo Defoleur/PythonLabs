@@ -3,16 +3,20 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import LoginPage from "./LoginPage";
+import LoginPage from "./Login/LoginPage";
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
-import RegistrationPage from "./RegistrationPage";
-import ProfilePage from "./ProfilePage";
+import RegistrationPage from "./Registration/RegistrationPage";
+import ProfilePage from "./Profile/ProfilePage";
 import Navbar from "./Navbar";
+import {Provider} from "react-redux";
+import store from "./Login/LoginStore";
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
+    <Provider store={store}>
      <App/>
+        </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

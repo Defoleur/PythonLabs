@@ -54,7 +54,7 @@ input[type=password]:focus {
   border: 1px solid #AD8B73;
 }
 
-button[type=button] {
+.auth-button[type=button] {
   display: block;
   width: 100%;
   padding: 10px;

@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import styles from "./Styles/AuthenticationPages.module.css"
-import login_styles from "./Styles/LoginPage.module.css"
+import styles from "../Styles/AuthenticationPages.module.css"
+import login_styles from "../Styles/LoginPage.module.css"
 import {Link, Route, useNavigate} from 'react-router-dom'
 //import login from "./AJAX/login.js";
-import RegistrationPage from "./RegistrationPage";
+import RegistrationPage from "../Registration/RegistrationPage";
 import {Login} from "./Login";
 export default function LoginPage() {
     const requestUrl = 'http://127.0.0.1:5000/api/v1/user/login';
@@ -54,6 +54,7 @@ export default function LoginPage() {
               />
             </div>
             <button
+                className={styles['auth-button']}
               type="button"
               onClick={onClick}
             >

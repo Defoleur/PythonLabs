@@ -15,9 +15,9 @@ const Navbar = () => {
             {!isLoggedIn ? (
                     <nav className={`${styles['navbar-custom']} navbar navbar-expand-sm navbar-light rounded-bottom bg-white justify-content-between fixed-top`}>
                         <div className="navbar-nav navbar-nav-right ml-auto">
-                           <a className={`${styles['navbar-brand']} navbar-brand`}>EventCD🗓️</a>
+                           <a className={`${styles['navbar-brand']} navbar-brand`}><Link className={styles.link} to={'/'}>EventCD🗓️</Link></a>
                         </div>
-                        <button className="navbar-toggler" data-toggle="collapse"
+                        <button className="navbar-toggler" data-bs-toggle="collapse"
                                 data-target="#info" aria-controls="info"
                                 aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
@@ -30,7 +30,7 @@ const Navbar = () => {
                 ) :
                 (<nav className={`${styles['navbar-custom']} navbar navbar-expand-sm navbar-light rounded-bottom bg-white justify-content-between fixed-top`}>
                     <div className="navbar-nav mr-auto">
-                        <a className={`${styles['navbar-brand']} navbar-brand`}>EventCD🗓️</a>
+                        <a className={`${styles['navbar-brand']} navbar-brand`}><Link className={styles.link} to={'/'}>EventCD🗓️</Link></a>
                         <a className="nav-item nav-link">Add new event!</a>
                         <a className="nav-item nav-link"><Link className={styles.link} to={'/events'}>Search for events!</Link></a>
                     </div>

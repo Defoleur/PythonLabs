@@ -39,3 +39,8 @@ justify-content: center;
   font-size: calc(1vw + 14px)!important;
   font-family: $gill-sans-font;
 }
+.h2 {
+  font-size: calc(5vw + 20px)!important; /* Use vw (viewport width) instead of em or px */
+  font-family: $gill-sans-font;
+  text-align: center;
+}

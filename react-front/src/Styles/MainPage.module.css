@@ -41,4 +41,10 @@
   font-family: "Gill Sans", sans-serif;
 }
 
+.h2 {
+  font-size: calc(5vw + 20px) !important; /* Use vw (viewport width) instead of em or px */
+  font-family: "Gill Sans", sans-serif;
+  text-align: center;
+}
+
 /*# sourceMappingURL=MainPage.module.css.map */

@@ -1,7 +1,7 @@
 import React, {SetStateAction, useEffect, useState} from "react"
-import styles from "./Styles/CreatedEventsPage.module.scss"
+import styles from "../Styles/CreatedEventsPage.module.scss"
 import {getCreatedEvents} from "./EventsProvider";
-import {IEvent} from "./models";
+import {IEvent} from "../models";
 import Events from "./Events";
 import {useDispatch} from "react-redux";
 

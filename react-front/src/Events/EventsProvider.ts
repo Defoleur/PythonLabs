@@ -1,4 +1,4 @@
-import {IEvent} from "./models";
+import {IEvent} from "../models";
 import {useState} from "react";
 
 export async function getCreatedEvents(url : string) {

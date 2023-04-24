@@ -1,7 +1,7 @@
 import React from "react";
-import {IEvent} from "./models";
-import styles from "./Styles/CreatedEventsPage.module.scss"
-import Avatar from "./mikey.png"
+import {IEvent} from "../models";
+import styles from "../Styles/CreatedEventsPage.module.scss"
+import Avatar from "../mikey.png"
 interface EventsProps{
     events: IEvent[]
 }

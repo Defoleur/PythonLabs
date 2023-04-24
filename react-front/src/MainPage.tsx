@@ -9,7 +9,6 @@ export default function MainPage(){
     <div className={styles['main-div']}>
         <h1 className={styles.h1}>EventCD</h1>
         <label className={styles.label}>Convenient app for your event planning.</label>
-        <Link to="/login">Get started!</Link>
     </div>
     </div>
     </div>

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import './Styles/AuthenticationPages.module.css';
-import './Styles/RegistrationPage.module.css';
+import '../Styles/AuthenticationPages.module.css';
+import '../Styles/RegistrationPage.module.css';
 import {Link, useNavigate} from "react-router-dom";
-import styles from "./Styles/AuthenticationPages.module.css"
-import registration_styles from "./Styles/RegistrationPage.module.css"
+import styles from "../Styles/AuthenticationPages.module.css"
+import registration_styles from "../Styles/RegistrationPage.module.css"
 import Registration from "./RegistrationService";
 
 export default function RegistrationPage() {
@@ -17,8 +17,7 @@ export default function RegistrationPage() {
   const requestUrl = 'http://127.0.0.1:5000/api/v1/user';
   const navigation = useNavigate();
 
-// eslint-disable-next-line no-unused-vars
-function submitClick() {
+async function submitClick() {
     if (password !== confirmPassword){
         alert("Passwords are not the same!");
         return
@@ -31,9 +30,12 @@ function submitClick() {
         email: email,
         phone: phone,
     };
-    Registration(requestUrl, body).then(() =>
-        navigation('/login')
-    );
+    try {
+      await Registration(requestUrl, body).then(() => navigation('/login'));
+        alert("User was successfully created. Please login now!")
+    } catch (error : any) {
+      console.error(error);
+    }
 }
 
 
@@ -127,7 +129,7 @@ function submitClick() {
                     value={phone}
                   onChange={(e) => setPhone(e.target.value)}/>
                 </div>
-                <button type="button" className="btn btn-primary btn-block" onClick={submitClick}>Register</button>
+                <button type="button" className={`${styles['auth-button']} btn btn-primary btn-block`}onClick={submitClick}>Register</button>
                 <label className={styles['label']} htmlFor="password">Have account yet? For login click <Link to="/login">here</Link>.</label>
 				</form>
           </div>
