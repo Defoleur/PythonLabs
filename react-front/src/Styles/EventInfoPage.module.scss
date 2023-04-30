@@ -1,0 +1,24 @@
+@import "./Colors.module";
+@import "./Fonts.module";
+@import "./Navbar.module";
+@import "./EventAttributes.module";
+@import "./Buttons.module";
+
+
+.hr {
+	border: 0;
+	clear:both;
+	margin-top: 2px!important;
+	width: 100%;
+	background-color:$accent-color;
+	height: 5px!important;
+}
+
+.ul{
+	margin: 0;
+}
+.attached-user{
+	font-size: calc(1.1vw + 12px);
+	margin-bottom: 9px;
+}
+

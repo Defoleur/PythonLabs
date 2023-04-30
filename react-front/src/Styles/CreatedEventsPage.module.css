@@ -1,4 +1,7 @@
 @media screen and (min-width: 768px) {
+  .event-type {
+    font-size: calc(3vw + 10px);
+  }
   .event-details {
     width: calc(30vw + 120px);
     margin: 10px auto;
@@ -34,6 +37,9 @@
   .filter-container {
     width: calc(95vw - 30px);
     margin: 20px;
+  }
+  .event-type {
+    font-size: calc(5vw + 10px);
   }
   .event-name {
     font-weight: bold;
@@ -150,6 +156,12 @@
   font-size: 14px;
 }
 
+.filters input[type=checkbox] {
+  width: 10%;
+  font-size: 14px;
+  accent-color: #AD8B73;
+}
+
 .filters select {
   width: 100%;
   padding: 10px;
@@ -205,6 +217,24 @@
   align-items: center;
   justify-content: center;
   align-content: center;
+}
+
+.event-type {
+  margin: 10px;
+}
+
+.check {
+  display: flex;
+  justify-items: center;
+}
+
+.check-properties {
+  width: 100%;
+  padding: 5px;
+  margin-left: 3px;
+  border-radius: 5px;
+  font-family: "Gill Sans", sans-serif;
+  font-size: 1.2rem;
 }
 
 /*# sourceMappingURL=CreatedEventsPage.module.css.map */

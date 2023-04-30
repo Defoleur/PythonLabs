@@ -18,7 +18,6 @@ export default function ProfilePage(){
             setIsLoading(true)
             dispatch({ type: 'LOGIN' });
             const user : IUser = data;
-            console.log(data)
             sessionStorage.setItem("role", user.role)
             setUser(user)
             setIsLoading(false)

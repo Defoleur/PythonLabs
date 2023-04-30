@@ -15,7 +15,6 @@ export async function Login (url: string, body: object) {
             throw new Error(error.message);
         });
     }).catch((error) => {
-        console.error(error);
         alert(error.message);
     });
 }

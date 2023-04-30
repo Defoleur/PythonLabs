@@ -1,6 +1,7 @@
-export default async function Registration(url: string, body: object) {
+export default async function CreateEvent(url: string, body: object) {
     const headers = {
         'Content-Type': 'application/json',
+        Authorization: `Basic ${sessionStorage.getItem('token')}`
     };
 
      try {

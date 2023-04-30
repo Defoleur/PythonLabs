@@ -18,11 +18,14 @@ import AdminPanel from "./Admin/AdminPanel";
 import AuthorizedRoute from "./Routes/AuthorizedRoute";
 import ErrorPage from "./Errors/ErrorPage";
 import AdminRoute from "./Routes/AdminRoute";
+import EventInfoPage from "./EventInfo/EventInfoPage";
+import CreateEventPage from "./CreateEvent/CreateEventPage";
 
 function App() {
     // const [isLogged, setIsLogged] = useState(false)
     const dispatch = useDispatch();
     useEffect(()=>{
+        require("bootstrap/dist/js/bootstrap.bundle.js");
         if (sessionStorage.getItem("username") === null){
             dispatch({ type: 'LOGOUT' });
         }
@@ -46,6 +49,10 @@ function App() {
               <AdminPanel/>
                   </AdminRoute>
           </AuthorizedRoute>} />
+           <Route path="/event/:id" element={
+              <AuthorizedRoute><EventInfoPage/></AuthorizedRoute>} />
+           <Route path="/event" element={
+              <AuthorizedRoute><CreateEventPage/></AuthorizedRoute>} />
           <Route path="*" element={<ErrorPage code={404} error="Not Found" text="The page you're looking for doesn't exist 😵"/>} />
       </Routes>
     </BrowserRouter>

@@ -1,5 +1,6 @@
-export default async function Registration(url: string, body: object) {
+export default async function AddUserToEvent(url: string, body: object) {
     const headers = {
+        Authorization: `Basic ${sessionStorage.getItem('token')}`,
         'Content-Type': 'application/json',
     };
 

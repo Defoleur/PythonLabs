@@ -1,7 +1,9 @@
 @import "./Colors.module";
 @import "./Fonts.module";
 @media screen and (min-width: 768px) {
-
+.event-type{
+	font-size: calc(3vw + 10px);
+}
 	.event-details {
 		width: calc(30vw + 120px);
 		margin: 10px auto;
@@ -38,6 +40,9 @@
 		width: calc(95vw - 30px);
 		margin: 20px;
 	}
+	.event-type{
+	font-size: calc(5vw + 10px);
+}
 	.event-name {
 		font-weight: bold;
 		font-size: calc(5vw + 10px);
@@ -141,13 +146,17 @@
 	width: 50%;
 	font-size: 14px;
 }
+.filters input[type="checkbox"]{
+	width: 10%;
+	font-size: 14px;
+	accent-color: $accent-color;
+}
 .filters select {
 	width: 100%;
 	padding: 10px;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	border-radius: 5px;
-
 	font-family: $gill-sans-font;
 	border: 1px solid $accent-color;
 }
@@ -198,3 +207,19 @@
 	align-content: center;
 }
 
+
+.event-type{
+	margin: 10px
+}
+.check{
+	display: flex;
+	justify-items: center;
+}
+.check-properties{
+	width: 100%;
+	padding: 5px;
+	margin-left: 3px;
+	border-radius: 5px;
+	font-family: $gill-sans-font;
+	font-size: 1.2rem;
+}

@@ -1,23 +1,35 @@
-import React, {SetStateAction, useEffect, useState} from "react"
+import React, {useEffect, useState} from "react"
 import styles from "../Styles/CreatedEventsPage.module.scss"
-import {getCreatedEvents} from "./EventsProvider";
+import {GetEvents} from "./EventsProvider";
 import {IEvent} from "../models";
 import Events from "./Events";
-import {useDispatch} from "react-redux";
+import Loading from "../Loading";
+
+
 
 export default function EventsPage(){
     const[events, setEvents] = useState<IEvent[]>();
+    const[attachedEvents, setAttachedEvents] = useState<IEvent[]>();
     const[filteredEvents, setFilteredEvents] = useState<IEvent[]>();
     const [titleFilter, setTitleFilter] = useState('');
     const [ownerFilter, setOwnerFilter] = useState('');
-    const dispatch = useDispatch();
-    const requestUrl = `http://127.0.0.1:5000/api/v1/event/${sessionStorage.getItem('username')}/created`;
-     useEffect(() => {
-         dispatch({ type: 'LOGIN' });
-         getCreatedEvents(requestUrl).then((data) => {
+    const [showCreatedEvents, setShowCreatedEvents] = useState(true);
+    const [showAttachedEvents, setShowAttachedEvents] = useState(true);
+    const [isLoading, setIsLoading] = useState(true)
+    const eventsUrl = `http://127.0.0.1:5000/api/v1/event/${sessionStorage.getItem('username')}`;
+    useEffect(() => {
+         GetEvents(eventsUrl + '/created').then((data) => {
+              setIsLoading(true)
              const events : IEvent[] = data;
              setEvents(events)
              setFilteredEvents(events)
+             setIsLoading(false)
+         })
+        GetEvents(eventsUrl + '/attached').then((data) => {
+            setIsLoading(true)
+             const events : IEvent[] = data;
+             setAttachedEvents(events)
+            setIsLoading(false)
          })
      },[])
 
@@ -32,6 +44,7 @@ export default function EventsPage(){
         setOwnerFilter(value);
         filterEvents(titleFilter, value);
     };
+
      const filterEvents = (title: string, owner: string) => {
     const filtered = events?.filter(
       (event) =>
@@ -54,19 +67,64 @@ export default function EventsPage(){
                   onChange={handleOwnerFilterChange}/>
                             <div><input type="time"/><input type="time"/></div>
                             <div><input type="date"/><input type="date"/></div>
-                            <select>
-                                <option value="1">All events</option>
-                                <option value="2">My events</option>
-                                <option value="3">Attached events</option>
-                            </select>
-                            {/*<button className={`$btn ${styles["btn-primary"]} ${styles["btn-search"]}`}>Search!</button>*/}
+                            <div className={styles.check}>
+                                <input
+                                    type="checkbox"
+                                    checked={showCreatedEvents}
+                                    onChange={() => {
+                                        if (showAttachedEvents) {
+                                            setShowCreatedEvents(!showCreatedEvents);
+                                        } else {
+                                            setShowCreatedEvents(true);
+                                        }
+                                    }}
+                                />
+                                <div className={styles["check-properties"]}>My events</div>
+                            </div>
+<div className={styles.check}>
+    <input
+      type="checkbox"
+      checked={showAttachedEvents}
+      onChange={() => {
+        if (showCreatedEvents) {
+          setShowAttachedEvents(!showAttachedEvents);
+        } else {
+          setShowAttachedEvents(true);
+        }
+      }}
+      disabled={!showCreatedEvents && !showAttachedEvents}
+    />
+    <div className={styles["check-properties"]}>Attached events</div>
+</div>
                         </div>
                     </div>
                 </div>
                 <hr className={`${styles["hr-separator"]} ${styles["hr"]}`}/>
                     <div className={`col-md-8 col-12 mr-md-0 ${styles.main}`}>
-                        {filteredEvents && (<Events events={filteredEvents}></Events>)}
-                    </div>
+ {isLoading ? (
+  <Loading color="white" />
+) : (
+  <>
+    {showCreatedEvents && (
+      <>
+        <h1 className={`justify-content-center ${styles["event-type"]}`}>
+          My events
+        </h1>
+        {filteredEvents && <Events events={filteredEvents}></Events>}
+      </>
+    )}
+    {showAttachedEvents && (
+      <>
+        <h1 className={`justify-content-center ${styles["event-type"]}`}>
+          Attached events
+        </h1>
+        {attachedEvents && <Events events={attachedEvents}></Events>}
+      </>
+    )}
+  </>
+)}
+
+</div>
             </div>
         </div>
         </div>

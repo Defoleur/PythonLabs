@@ -1,0 +1,62 @@
+@import "./Colors.module";
+@import "./Fonts.module";
+//@import "Navbar.module";
+@import "./Buttons.module";
+@import "./EventAttributes.module";
+.bio-edit{
+	width: 100%!important;
+	resize: none;
+	height:100%!important;
+}
+//.edit-div input[type="text"], input[type="file"], textarea, input[type="time"], input[type="date"] {
+//	display: flex;
+//	padding: 3px;
+//	width: 100%;
+//	font-size: calc(0.9vw + 10px);
+//	margin-top: 1px;
+//	margin-bottom: 6px;
+//	margin-left: 3px;
+//	border: 2px solid $secondary-color;
+//	border-radius: 10px;
+//	color: black;
+//	box-sizing: border-box;
+//}
+.edit-div-element {
+	display: flex;
+	padding: 3px!important;
+	width: 100%!important;
+	font-size: calc(0.9vw + 10px);
+	margin-top: 1px;
+	margin-bottom: 6px;
+	margin-left: 3px;
+	border: 2px solid $secondary-color!important;
+	border-radius: 10px;
+	color: black;
+	box-sizing: border-box;
+}
+
+.edit-div{
+	flex-direction: row;
+	display: flex;
+	white-space: nowrap;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.transparent-button {
+  background-color: transparent;
+  border: none;
+  padding: 2px 4px;
+  border-radius: 10%;
+  cursor: pointer;
+}
+.attached-user{
+	font-size: calc(0.9vw + 10px);
+	margin-bottom: 9px;
+}
+//.custom-container button[type="submit"]{
+//	width: 10%;
+//	margin-left: 6px;
+//	margin-top: 10px;
+//	margin-bottom: 10px;
+//}
+
