@@ -8,8 +8,9 @@ interface EventsProps{
 }
 
 export default function Events({events}: EventsProps){
-  return (
-      <div className={styles["events-container"]}>
+  return (<>
+      {events.length > 0 ?
+      (<div className={styles["events-container"]}>
           {events.map((event) => (
                 <div key={event.id} className={`${styles['event-container']}`}>
                     <div className={styles["event"]}>
@@ -27,6 +28,8 @@ export default function Events({events}: EventsProps){
                     </div>
                 </div>)
           )}
-      </div>
+      </div>) : <h1 className={`justify-content-center ${styles["message"]}`}>
+              There are not any events 😕
+          </h1>}</>
   )
 }

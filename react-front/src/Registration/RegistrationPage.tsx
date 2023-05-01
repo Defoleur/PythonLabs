@@ -5,6 +5,9 @@ import {Link, useNavigate} from "react-router-dom";
 import styles from "../Styles/AuthenticationPages.module.css"
 import registration_styles from "../Styles/RegistrationPage.module.css"
 import Registration from "./RegistrationService";
+import {Alert} from "react-bootstrap";
+import ErrorMessageProvider from "../ErrorMessageProvider";
+
 
 export default function RegistrationPage() {
   const [username, setUsername] = useState('');
@@ -16,6 +19,9 @@ export default function RegistrationPage() {
   const [phone, setPhone] = useState('');
   const requestUrl = 'http://127.0.0.1:5000/api/v1/user';
   const navigation = useNavigate();
+  const [showAlert, setShowAlert] = useState(false);
+  const [textAlert, setTextAlert] = useState("");
+
 
 async function submitClick() {
     if (password !== confirmPassword){
@@ -30,12 +36,13 @@ async function submitClick() {
         email: email,
         phone: phone,
     };
-    try {
-      await Registration(requestUrl, body).then(() => navigation('/login'));
+    await Registration(requestUrl, body).then(() => {
+        navigation('/login')
         alert("User was successfully created. Please login now!")
-    } catch (error : any) {
-      console.error(error);
-    }
+    }).catch ((error) => {
+      setTextAlert(ErrorMessageProvider(error.message))
+      setShowAlert(true);
+    })
 }
 
 
@@ -132,6 +139,15 @@ async function submitClick() {
                 <button type="button" className={`${styles['auth-button']} btn btn-primary btn-block`}onClick={submitClick}>Register</button>
                 <label className={styles['label']} htmlFor="password">Have account yet? For login click <Link to="/login">here</Link>.</label>
 				</form>
+            {showAlert && (
+              <Alert
+                variant="danger"
+                onClose={() => setShowAlert(false)}
+                dismissible
+              >
+                <label className={styles['alert-label']}>{textAlert}</label>
+              </Alert>
+            )}
           </div>
       </div>
     </main>

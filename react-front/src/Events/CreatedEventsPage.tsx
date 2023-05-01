@@ -11,11 +11,17 @@ export default function EventsPage(){
     const[events, setEvents] = useState<IEvent[]>();
     const[attachedEvents, setAttachedEvents] = useState<IEvent[]>();
     const[filteredEvents, setFilteredEvents] = useState<IEvent[]>();
+    const[filteredAttachedEvents, setFilteredAttachedEvents] = useState<IEvent[]>();
     const [titleFilter, setTitleFilter] = useState('');
     const [ownerFilter, setOwnerFilter] = useState('');
     const [showCreatedEvents, setShowCreatedEvents] = useState(true);
     const [showAttachedEvents, setShowAttachedEvents] = useState(true);
     const [isLoading, setIsLoading] = useState(true)
+    const [startTimeFilter, setStartTimeFilter] = useState('');
+    const [endTimeFilter, setEndTimeFilter] = useState('');
+    const [startDateFilter, setStartDateFilter] = useState('');
+    const [endDateFilter, setEndDateFilter] = useState('');
+
     const eventsUrl = `http://127.0.0.1:5000/api/v1/event/${sessionStorage.getItem('username')}`;
     useEffect(() => {
          GetEvents(eventsUrl + '/created').then((data) => {
@@ -29,30 +35,53 @@ export default function EventsPage(){
             setIsLoading(true)
              const events : IEvent[] = data;
              setAttachedEvents(events)
+            setFilteredAttachedEvents(events)
             setIsLoading(false)
          })
      },[])
 
-    const handleTitleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
-        setTitleFilter(value);
-        filterEvents(value, ownerFilter);
-    };
+    // const handleTitleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     const value = e.target.value;
+    //     setTitleFilter(value);
+    //     filterEvents(value, ownerFilter);
+    // };
+    //
+    //  const handleOwnerFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     const value = e.target.value;
+    //     setOwnerFilter(value);
+    //     filterEvents(titleFilter, value);
+    // };
 
-     const handleOwnerFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
-        setOwnerFilter(value);
-        filterEvents(titleFilter, value);
-    };
-
-     const filterEvents = (title: string, owner: string) => {
-    const filtered = events?.filter(
-      (event) =>
-        event.title.toLowerCase().includes(title.toLowerCase()) &&
-        event.username.toLowerCase().includes(owner.toLowerCase()) // Case-insensitive owner filter
-    );
+     const filterEvents = () => {
+     const filtered = events?.filter(
+    (event) =>
+      event.title.toLowerCase().includes(titleFilter.toLowerCase()) &&
+      event.username.toLowerCase().includes(ownerFilter.toLowerCase()) && // Case-insensitive owner filter
+      (!startTimeFilter || event.startTime >= startTimeFilter) && // Time filter
+      (!endTimeFilter || event.endTime <= endTimeFilter) && // Time filter
+      (!startDateFilter || event.date >= startDateFilter) && // Date filter
+      (!endDateFilter || event.date <= endDateFilter) // Date filter
+  );
     setFilteredEvents(filtered || []);
+    const filteredAttached = attachedEvents?.filter(
+    (event) =>
+      event.title.toLowerCase().includes(titleFilter.toLowerCase()) &&
+      event.username.toLowerCase().includes(ownerFilter.toLowerCase()) && // Case-insensitive owner filter
+      (!startTimeFilter || event.startTime >= startTimeFilter) && // Time filter
+      (!endTimeFilter || event.endTime <= endTimeFilter) && // Time filter
+      (!startDateFilter || event.date >= startDateFilter) && // Date filter
+      (!endDateFilter || event.date <= endDateFilter) // Date filter
+  );
+    setFilteredAttachedEvents(filteredAttached || []);
   };
+    const resetFilters = () => {
+        setOwnerFilter("")
+        setTitleFilter("")
+        setStartTimeFilter("")
+        setEndTimeFilter("")
+        setStartDateFilter("")
+        setEndDateFilter("")
+    }
     return (
         <div className={styles['body']}>
         <div className="container-fluid">
@@ -62,11 +91,17 @@ export default function EventsPage(){
                         <div className={styles["filters"]}>
                             <h3>Filters</h3>
                             <input type="text" placeholder="Search by title..." value={titleFilter}
-                  onChange={handleTitleFilterChange}/>
+                  onChange={(e) => setTitleFilter(e.target.value)}/>
                             <input type="text" placeholder="Search by owner..." value={ownerFilter}
-                  onChange={handleOwnerFilterChange}/>
-                            <div><input type="time"/><input type="time"/></div>
-                            <div><input type="date"/><input type="date"/></div>
+                  onChange={(e) => setOwnerFilter(e.target.value)}/>
+                            <div>
+                                <input type="time" placeholder="Start time" value={startTimeFilter} onChange={(e) => setStartTimeFilter(e.target.value)} />
+                                <input type="time" placeholder="End time" value={endTimeFilter} onChange={(e) => setEndTimeFilter(e.target.value)} />
+                            </div>
+                            <div>
+                                <input type="date" placeholder="Start date" value={startDateFilter} onChange={(e) => setStartDateFilter(e.target.value)} />
+                                <input type="date" placeholder="End date" value={endDateFilter} onChange={(e) => setEndDateFilter(e.target.value)} />
+                            </div>
                             <div className={styles.check}>
                                 <input
                                     type="checkbox"
@@ -96,6 +131,8 @@ export default function EventsPage(){
     />
     <div className={styles["check-properties"]}>Attached events</div>
 </div>
+                             {/*<button className={`btn btn-primary ${styles["btn-primary"]} btn-sm ${styles["btn-search"]}`} onClick={resetFilters}>Reset filters!</button>*/}
+                            <button className={`btn btn-primary ${styles["btn-primary"]} btn-sm ${styles["btn-search"]}`} onClick={filterEvents}>Search!</button>
                         </div>
                     </div>
                 </div>
@@ -113,12 +150,13 @@ export default function EventsPage(){
         {filteredEvents && <Events events={filteredEvents}></Events>}
       </>
     )}
+      {showCreatedEvents === showAttachedEvents && <hr className={styles["hr"]}/> }
     {showAttachedEvents && (
       <>
         <h1 className={`justify-content-center ${styles["event-type"]}`}>
           Attached events
         </h1>
-        {attachedEvents && <Events events={attachedEvents}></Events>}
+        {filteredAttachedEvents && <Events events={filteredAttachedEvents}></Events>}
       </>
     )}
   </>

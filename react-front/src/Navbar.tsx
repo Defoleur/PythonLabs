@@ -26,7 +26,7 @@ const Navbar = () => {
             </a>
           </div>
           <button
-            className="navbar-toggler"
+            className="navbar-toggler mr-1"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#info"
@@ -63,7 +63,7 @@ const Navbar = () => {
             </a>
           </div>
           <button
-            className="navbar-toggler"
+            className="navbar-toggler mr-5"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#info"

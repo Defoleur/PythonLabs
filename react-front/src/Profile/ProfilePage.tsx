@@ -8,6 +8,7 @@ import {Link} from "react-router-dom";
 import {getProfile} from "./ProfileService";
 import { useDispatch } from 'react-redux';
 import Loading from "../Loading";
+
 export default function ProfilePage(){
     const requestUrl = `http://127.0.0.1:5000/api/v1/user/${sessionStorage.getItem('username')}`;
     const [user, setUser] = useState<IUser>();
@@ -33,7 +34,7 @@ export default function ProfilePage(){
             {isLoading ? <Loading color="white"/> : (<div className={styles["custom-container"]}>
         {user && <User user={user}/>}
             <div className={styles["profile-details"]}>
-                <Link to="/profile"><button className={styles["custom-button"]}>Edit my profile!</button></Link>
+                {/*<Link to="/profile"><button className={styles["custom-button"]}>Edit my profile!</button></Link>*/}
                 <Link to="/events"><button className={styles["custom-button"]}>See my events!</button></Link>
                 {user?.role === 'admin' && <Link to="/admin"><button className={`${styles["custom-button"]}`}>⚙️</button></Link>}
                 <Link to="/"><button className={`${styles["custom-button"]} ${styles["delete-button"]}`} onClick={logout}>Logout!</button></Link>

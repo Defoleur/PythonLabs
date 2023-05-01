@@ -3,11 +3,15 @@ import styles from "../Styles/EditEventPage.module.scss";
 import {IEvent} from "../models";
 import CreateEvent from "./CreateEventService";
 import {useNavigate} from "react-router-dom";
+import ErrorMessageProvider from "../ErrorMessageProvider";
+import {Alert} from "react-bootstrap";
 
 
 export default function CreateEventPage(){
     const eventUrl = `http://127.0.0.1:5000/api/v1/event`
     const navigation = useNavigate();
+    const [showAlert, setShowAlert] = useState(false);
+  const [textAlert, setTextAlert] = useState("");
     const [event, setEvent] = useState<IEvent>({
     id: 0,
     title: "",
@@ -28,14 +32,13 @@ export default function CreateEventPage(){
   };
 
    const handleSubmit = () => {
-    try {
-      CreateEvent(eventUrl, event).then(() => {
+     CreateEvent(eventUrl, event).then(() => {
           navigation('/events')
            alert("Event was successfully created.")
-      });
-    } catch (error : any) {
-      console.error(error);
-    }
+      }).catch ((error) => {
+      setTextAlert(ErrorMessageProvider(error.message))
+      setShowAlert(true);
+    })
   };
 
   return (
@@ -94,6 +97,15 @@ export default function CreateEventPage(){
                     onChange={handleInputChange}
                   ></textarea>
                 </div>
+                  {showAlert && (
+              <Alert
+                variant="danger"
+                onClose={() => setShowAlert(false)}
+                dismissible
+              >
+                <label className={styles['alert-label']}>{textAlert}</label>
+              </Alert>
+            )}
               </div>
               <button className={styles["custom-button"]} onClick={handleSubmit}>
                 Save!

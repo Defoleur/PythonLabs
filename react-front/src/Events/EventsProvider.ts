@@ -1,3 +1,5 @@
+import ErrorMessageProvider from "../ErrorMessageProvider";
+
 export async function GetEvents(url : string) {
     const headers = {
         Authorization: `Basic ${sessionStorage.getItem('token')}`,
@@ -13,6 +15,6 @@ export async function GetEvents(url : string) {
         }
         return response.json().then((error) => { throw new Error(error.message); });
     }).catch((error) => {
-        alert(error.message);
+        alert(ErrorMessageProvider(error.message));
     });
 }

@@ -1,3 +1,5 @@
+import ErrorMessageProvider from "../ErrorMessageProvider";
+
 export default async function DeleteUser(url : string) {
     const headers = {
         Authorization: `Basic ${sessionStorage.getItem('token')}`,
@@ -14,6 +16,6 @@ export default async function DeleteUser(url : string) {
         }
         return response.json().then((error) => { throw new Error(error.message); });
     }).catch((error) => {
-        alert(error.message);
+        alert(ErrorMessageProvider(error.message));
     });
 }

@@ -4,6 +4,9 @@
 .event-type{
 	font-size: calc(3vw + 10px);
 }
+	.message{
+		font-size: calc(2vw + 10px);
+	}
 	.event-details {
 		width: calc(30vw + 120px);
 		margin: 10px auto;
@@ -43,6 +46,9 @@
 	.event-type{
 	font-size: calc(5vw + 10px);
 }
+	.message{
+		font-size: calc(3vw + 10px);
+	}
 	.event-name {
 		font-weight: bold;
 		font-size: calc(5vw + 10px);
@@ -222,4 +228,7 @@
 	border-radius: 5px;
 	font-family: $gill-sans-font;
 	font-size: 1.2rem;
+}
+.message{
+	margin: 10px
 }

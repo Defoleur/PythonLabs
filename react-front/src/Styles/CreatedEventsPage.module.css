@@ -2,6 +2,9 @@
   .event-type {
     font-size: calc(3vw + 10px);
   }
+  .message {
+    font-size: calc(2vw + 10px);
+  }
   .event-details {
     width: calc(30vw + 120px);
     margin: 10px auto;
@@ -40,6 +43,9 @@
   }
   .event-type {
     font-size: calc(5vw + 10px);
+  }
+  .message {
+    font-size: calc(3vw + 10px);
   }
   .event-name {
     font-weight: bold;
@@ -235,6 +241,10 @@
   border-radius: 5px;
   font-family: "Gill Sans", sans-serif;
   font-size: 1.2rem;
+}
+
+.message {
+  margin: 10px;
 }
 
 /*# sourceMappingURL=CreatedEventsPage.module.css.map */

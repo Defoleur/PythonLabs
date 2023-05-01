@@ -1,3 +1,5 @@
+import ErrorMessageProvider from "../ErrorMessageProvider";
+
 export async function getUsers(url: string) {
     const headers = {
         Authorization: `Basic ${sessionStorage.getItem('token')}`,
@@ -15,6 +17,6 @@ export async function getUsers(url: string) {
             throw new Error(error.message);
         });
     }).catch((error) => {
-        alert(error.message);
+       alert(ErrorMessageProvider(error.message));
     });
 }

@@ -17,8 +17,7 @@ export default async function Registration(url: string, body: object) {
       throw new Error(error.message);
     }
   } catch (error : any) {
-    console.error(error);
-    alert(error.message);
+    //alert(error.message);
     throw error;
   }
 

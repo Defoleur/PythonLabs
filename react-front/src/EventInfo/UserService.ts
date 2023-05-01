@@ -18,8 +18,8 @@ export default async function AddUserToEvent(url: string, body: object) {
       throw new Error(error.message);
     }
   } catch (error : any) {
-    console.error(error);
-    alert(error.message);
+    //console.error(error);
+    //alert(error.message);
     throw error;
   }
 

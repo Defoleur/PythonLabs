@@ -10,6 +10,8 @@ import {User} from "./User";
 import DeleteInfo from "./DeleteService";
 import Loading from "../Loading";
 import AddUserToEvent from "./UserService";
+import ErrorMessageProvider from "../ErrorMessageProvider";
+import {Alert} from "react-bootstrap";
 
 
 export default function EventInfoPage() {
@@ -19,6 +21,8 @@ export default function EventInfoPage() {
     const [userToAdd, setUserToAdd] = useState<IUser>();
     const [isLoading, setIsLoading] = useState(true);
     const [username, setUsername] = useState('')
+    const [showAlert, setShowAlert] = useState(false);
+  const [textAlert, setTextAlert] = useState("");
     const eventUrl = `http://127.0.0.1:5000/api/v1/event/${id}`;
     const getUsersUrl = `http://127.0.0.1:5000/api/v1/${id}/users`;
     const navigation = useNavigate();
@@ -26,14 +30,12 @@ export default function EventInfoPage() {
         getInfo(eventUrl).then((data) => {
             setIsLoading(true)
             const event : IEvent = data
-            console.log(event)
             setEvent(event)
             setIsLoading(false)
         })
         getInfo(getUsersUrl).then((data) => {
             setIsLoading(true)
             const users : IUser[] = data
-            console.log(users)
             setUsers(users)
             setIsLoading(false)
         })
@@ -43,15 +45,18 @@ export default function EventInfoPage() {
       await DeleteInfo(eventUrl).then(() => navigation('/events'));
         alert("Event was successfully deleted!")
     } catch (error : any) {
-      console.error(error);
     }
     }
     async function findUser(){
+        setUserToAdd(undefined)
         const requestUrl = `http://127.0.0.1:5000/api/v1/user/${username}`;
         getInfo(requestUrl).then((data) => {
+            setShowAlert(false);
             const user : IUser = data
-            console.log(user)
             setUserToAdd(user)
+        }).catch ((error) => {
+            setTextAlert(`User with username ${username} wasn't found!`)
+            setShowAlert(true);
         })
     }
     async function addUser(){
@@ -64,12 +69,15 @@ export default function EventInfoPage() {
             getInfo(getUsersUrl).then((data) => {
             setIsLoading(true)
             const users : IUser[] = data
-            console.log(users)
             setUsers(users)
             setIsLoading(false)
                 setUserToAdd(undefined)
+                setUsername("")
         })}
-        )
+        ).catch((error) => {
+            setTextAlert(error.message)
+            setShowAlert(true);
+        })
 
     }
     async function deleteUser(username : string){
@@ -78,7 +86,6 @@ export default function EventInfoPage() {
             getInfo(getUsersUrl).then((data) => {
             setIsLoading(true)
             const users : IUser[] = data
-            console.log(users)
             setUsers(users)
             setIsLoading(false)
         })})
@@ -118,6 +125,14 @@ export default function EventInfoPage() {
                             </div>
                             </li>}
                          </>}
+                        {showAlert && (
+                    <Alert
+                        variant="danger"
+                        onClose={() => setShowAlert(false)}
+                        dismissible>
+                        <label className={styles["alert-label"]}>{textAlert}</label>
+                    </Alert>
+                    )}
                         <div className={styles["event-owner"]}>Attached to:</div>
                         <ul className={list_styles["user-list"]}>
                         {users && (users?.length > 0 ? (<>

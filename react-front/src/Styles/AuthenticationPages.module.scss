@@ -34,6 +34,12 @@
 	font-family: $gill-sans-font;
 }
 
+.alert-label{
+	font-size: calc(0.5vw + 12px);
+	display: block;
+	font-family: $gill-sans-font;
+}
+
 input[type="text"], input[type="password"] {
 	display: block;
 	width: 100%;
