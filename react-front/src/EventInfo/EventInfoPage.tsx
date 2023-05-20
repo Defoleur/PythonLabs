@@ -22,7 +22,7 @@ export default function EventInfoPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [username, setUsername] = useState('')
     const [showAlert, setShowAlert] = useState(false);
-  const [textAlert, setTextAlert] = useState("");
+    const [textAlert, setTextAlert] = useState("");
     const eventUrl = `http://127.0.0.1:5000/api/v1/event/${id}`;
     const getUsersUrl = `http://127.0.0.1:5000/api/v1/${id}/users`;
     const navigation = useNavigate();

@@ -25,7 +25,9 @@ export default function RegistrationPage() {
 
 async function submitClick() {
     if (password !== confirmPassword){
-        alert("Passwords are not the same!");
+         setTextAlert(ErrorMessageProvider("Passwords are not the same!"))
+      setShowAlert(true);
+        // alert("Passwords are not the same!");
         return
     }
     const body = {
@@ -62,6 +64,7 @@ async function submitClick() {
                   className="form-control"
                   id="username"
                   name="username"
+                  aria-label="username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                 />
@@ -75,6 +78,7 @@ async function submitClick() {
                   className="form-control"
                   id="password"
                   name="password"
+                  aria-label="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -88,6 +92,7 @@ async function submitClick() {
                   className="form-control"
                   id="confirm-password"
                   name="confirm-password"
+                  aria-label="confirm-password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
@@ -99,6 +104,7 @@ async function submitClick() {
                   className="form-control"
                   id="first-name"
                   name="first-name"
+                  aria-label="first-name"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                 />
@@ -110,6 +116,7 @@ async function submitClick() {
                   className="form-control"
                   id="last-name"
                   name="last-name"
+                  aria-label="last-name"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                 />
@@ -122,6 +129,7 @@ async function submitClick() {
                   className="form-control"
                   id="email"
                   name="email"
+                  aria-label="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -133,6 +141,7 @@ async function submitClick() {
                         className="form-control"
                         id="phone"
                         name="phone"
+                        aria-label="phone"
                     value={phone}
                   onChange={(e) => setPhone(e.target.value)}/>
                 </div>
@@ -145,7 +154,7 @@ async function submitClick() {
                 onClose={() => setShowAlert(false)}
                 dismissible
               >
-                <label className={styles['alert-label']}>{textAlert}</label>
+                <label className={styles['alert-label']} aria-label="error-label">{textAlert}</label>
               </Alert>
             )}
           </div>

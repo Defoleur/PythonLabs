@@ -49,6 +49,7 @@ export default function LoginPage() {
                   className="form-control"
                   id="username"
                   name="username"
+                  aria-label="username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                 />
@@ -62,6 +63,7 @@ export default function LoginPage() {
                   className="form-control"
                   id="password"
                   name="password"
+                  aria-label="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -69,6 +71,7 @@ export default function LoginPage() {
               <button
                 className={styles["auth-button"]}
                 type="button"
+                id="login-button"
                 onClick={onClick}
               >
                 Login
@@ -84,7 +87,7 @@ export default function LoginPage() {
                 onClose={() => setShowAlert(false)}
                 dismissible
               >
-                <label className={styles["alert-label"]}>{textAlert}</label>
+                <label className={styles["alert-label"]} aria-label="error-label">{textAlert}</label>
               </Alert>
             )}
           </div>
