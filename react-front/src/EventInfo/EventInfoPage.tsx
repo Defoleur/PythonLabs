@@ -41,11 +41,12 @@ export default function EventInfoPage() {
         })
     }, [])
     async function deleteEvent(){
-        try {
-      await DeleteInfo(eventUrl).then(() => navigation('/events'));
-        alert("Event was successfully deleted!")
-    } catch (error : any) {
-    }
+        console.log("hello")
+        DeleteInfo(eventUrl).then(() => {
+              navigation('/events')
+              alert("Event was successfully deleted!")
+          }).catch((error) => {
+          })
     }
     async function findUser(){
         setUserToAdd(undefined)
@@ -96,15 +97,15 @@ export default function EventInfoPage() {
         <div className={styles["custom-container"]}>
         {event && (
             <div className={styles["event-details"]}>
-            <div className={styles["event-name"]} id="event-name">{event.title}</div>
+            <div className={styles["event-name"]} id="event-name" aria-label="event-name">{event.title}</div>
             <hr className={styles.hr}/>
                 <div className="row gx-5">
                     <div className="col-md-6">
-                            <div className={styles["event-owner"]}>
-                      Owner: <img className={styles["profile-pic"]} src={`https://picsum.photos/299`} alt="My Profile Picture"/> {event.username}</div>
-                   <div className={styles["event-date"]}>Date 📅: {event.date}</div>
-                   <div className={styles["event-date"]}>Time 🕰️: {event.startTime} - {event.endTime}</div>
-                  <div className={styles["event-description"]}>Description: {event.content}</div>
+                            <div className={styles["event-owner"]} aria-label="username">
+                      Owner: <img className={styles["profile-pic"]} src={`https://picsum.photos/299`} alt="My Profile Picture" /> {event.username}</div>
+                   <div className={styles["event-date"]} aria-label="date">Date 📅: {event.date}</div>
+                   <div className={styles["event-date"]} aria-label="time">Time 🕰️: {event.startTime} - {event.endTime}</div>
+                  <div className={styles["event-description"]} aria-label="description">Description: {event.content}</div>
               </div>
                     <div className="col-md-6">
                          {event?.username === sessionStorage.getItem("username") &&
@@ -118,7 +119,7 @@ export default function EventInfoPage() {
                     placeholder="Search by username..."/>
                         <button className={styles["custom-button"]} onClick={findUser}>Search!</button>
                     </div>
-                        {userToAdd &&  <li className={list_styles["user-container"]}>
+                        {userToAdd &&  <li className={list_styles["user-container"]} aria-label="user-to-add">
                             <User user={userToAdd}/>
                             <div className={list_styles["buttons-div"]}>
                             <button className={`${styles["custom-button"]} my-2 btn`} onClick={addUser}>+</button>
@@ -130,7 +131,7 @@ export default function EventInfoPage() {
                         variant="danger"
                         onClose={() => setShowAlert(false)}
                         dismissible>
-                        <label className={styles["alert-label"]}>{textAlert}</label>
+                        <label className={styles["alert-label"]} aria-label="error-label">{textAlert}</label>
                     </Alert>
                     )}
                         <div className={styles["event-owner"]}>Attached to:</div>
