@@ -12,7 +12,7 @@ export default function Events({events}: EventsProps){
       {events.length > 0 ?
       (<div className={styles["events-container"]}>
           {events.map((event) => (
-                <div key={event.id} className={`${styles['event-container']}`}>
+                <div key={event.id} className={`${styles['event-container']}`} aria-label="event">
                     <div className={styles["event"]}>
                         <div className={styles["event-details"]}>
                             <div className={styles["event-name"]}>{event.title}</div>

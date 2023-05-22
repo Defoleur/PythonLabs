@@ -56,6 +56,7 @@ export default function CreateEventPage(){
                     value={event.title}
                     onChange={handleInputChange}
                     className={styles["edit-div-element"]}
+                    aria-label="title"
                   />
                 </div>
                 <div className={styles["edit-div"]}>
@@ -66,6 +67,7 @@ export default function CreateEventPage(){
                     value={event.date}
                     onChange={handleInputChange}
                     className={styles["edit-div-element"]}
+                    aria-label="date"
                   />
                 </div>
                 <div className={styles["edit-div"]}>
@@ -76,6 +78,7 @@ export default function CreateEventPage(){
                     value={event.startTime}
                     onChange={handleInputChange}
                     className={styles["edit-div-element"]}
+                    aria-label="start-time"
                   />
                   <input
                     type="time"
@@ -83,6 +86,7 @@ export default function CreateEventPage(){
                     value={event.endTime}
                     onChange={handleInputChange}
                     className={styles["edit-div-element"]}
+                     aria-label="end-time"
                   />
                 </div>
               </div>
@@ -95,6 +99,7 @@ export default function CreateEventPage(){
                     name="content"
                     value={event.content}
                     onChange={handleInputChange}
+                     aria-label="content"
                   ></textarea>
                 </div>
                   {showAlert && (
@@ -103,7 +108,7 @@ export default function CreateEventPage(){
                 onClose={() => setShowAlert(false)}
                 dismissible
               >
-                <label className={styles['alert-label']}>{textAlert}</label>
+                <label className={styles['alert-label']} aria-label="error-label">{textAlert}</label>
               </Alert>
             )}
               </div>

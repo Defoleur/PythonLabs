@@ -5,19 +5,13 @@ export default async function DeleteInfo(url : string) {
         Authorization: `Basic ${sessionStorage.getItem('token')}`,
         'Content-Type': 'application/json',
     };
-    try {
-        const response = await fetch(url, {
+    return await fetch(url, {
             method: 'DELETE',
             headers,
-        });
+    }).then((response) => {
         if (response.ok) {
             return response.json();
-        } else {
-            const error = await response.json();
-                throw new Error(error.message);
-            }
-        } catch (error : any) {
-    alert(ErrorMessageProvider(error.message));
-    throw error;
-  }
+        }
+        return response.json().then((error) => { throw new Error(error.message); });
+    })
 }

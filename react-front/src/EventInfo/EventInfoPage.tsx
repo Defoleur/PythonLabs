@@ -42,7 +42,8 @@ export default function EventInfoPage() {
     }, [])
     async function deleteEvent(){
         console.log("hello")
-        DeleteInfo(eventUrl).then(() => {
+        console.log(id)
+        DeleteInfo(eventUrl).then((data) => {
               navigation('/events')
               alert("Event was successfully deleted!")
           }).catch((error) => {

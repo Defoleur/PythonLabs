@@ -14,24 +14,24 @@ export default function User({user}: UserProps){
             <div>
                 <img className={styles["profile-avatar"]} src={Avatar} alt="My Profile Picture"/>
             </div>
-            <div className={styles["profile-name"]} id="name">{user.firstName} {user.lastName}</div>
+            <div className={styles["profile-name"]} id="name" aria-label="name">{user.firstName} {user.lastName}</div>
         </div>
         <div className={styles["profile-details"]}>
             <div className={styles["profile-bio"]}>
                 <label className={`${styles["profile-attribute"]} ${styles["text"]}`}>Username:</label>
-                <label className={`${styles["profile-data"]} ${styles["text"]}`} id="username-profile">{user.username}</label>
+                <label className={`${styles["profile-data"]} ${styles["text"]}`} aria-label="username-profile" id="username-profile">{user.username}</label>
             </div>
             <div className={styles["profile-bio"]}>
                 <label className={`${styles["profile-attribute"]} ${styles["text"]}`}>Email:</label>
-                <label className={`${styles["profile-data"]} ${styles["text"]}`} id="email">{user.email}</label>
+                <label className={`${styles["profile-data"]} ${styles["text"]}`} aria-label="email" id="email">{user.email}</label>
             </div>
             <div className={styles["profile-bio"]}>
                 <label className={`${styles["profile-attribute"]} ${styles["text"]}`}>Phone:</label>
-                <label className={`${styles["profile-data"]} ${styles["text"]}`} id="phone">{user.phone}</label>
+                <label className={`${styles["profile-data"]} ${styles["text"]}`} aria-label="phone" id="phone">{user.phone}</label>
             </div>
             <div className={styles["profile-bio"]}>
                 <label className={`${styles["profile-attribute"]} ${styles["text"]}`}>Role:</label>
-                <label className={`${styles["profile-data"]} ${styles["text"]}`} id="role">{user.role}</label>
+                <label className={`${styles["profile-data"]} ${styles["text"]}`} aria-label="role" id="role">{user.role}</label>
             </div>
         </div>
     </div>

@@ -53,6 +53,7 @@ export default function EventsPage(){
     // };
 
      const filterEvents = () => {
+        console.log(titleFilter)
      const filtered = events?.filter(
     (event) =>
       event.title.toLowerCase().includes(titleFilter.toLowerCase()) &&
@@ -62,6 +63,7 @@ export default function EventsPage(){
       (!startDateFilter || event.date >= startDateFilter) && // Date filter
       (!endDateFilter || event.date <= endDateFilter) // Date filter
   );
+
     setFilteredEvents(filtered || []);
     const filteredAttached = attachedEvents?.filter(
     (event) =>
@@ -74,14 +76,14 @@ export default function EventsPage(){
   );
     setFilteredAttachedEvents(filteredAttached || []);
   };
-    const resetFilters = () => {
-        setOwnerFilter("")
-        setTitleFilter("")
-        setStartTimeFilter("")
-        setEndTimeFilter("")
-        setStartDateFilter("")
-        setEndDateFilter("")
-    }
+    // const resetFilters = () => {
+    //     setOwnerFilter("")
+    //     setTitleFilter("")
+    //     setStartTimeFilter("")
+    //     setEndTimeFilter("")
+    //     setStartDateFilter("")
+    //     setEndDateFilter("")
+    // }
     return (
         <div className={styles['body']}>
         <div className="container-fluid">
@@ -91,41 +93,44 @@ export default function EventsPage(){
                         <div className={styles["filters"]}>
                             <h3>Filters</h3>
                             <input type="text" placeholder="Search by title..." value={titleFilter}
-                  onChange={(e) => setTitleFilter(e.target.value)}/>
+                  onChange={(e) => setTitleFilter(e.target.value)} aria-label="title-filter"/>
                             <input type="text" placeholder="Search by owner..." value={ownerFilter}
-                  onChange={(e) => setOwnerFilter(e.target.value)}/>
+                  onChange={(e) => setOwnerFilter(e.target.value)} aria-label="owner-filter"/>
                             <div>
-                                <input type="time" placeholder="Start time" value={startTimeFilter} onChange={(e) => setStartTimeFilter(e.target.value)} />
-                                <input type="time" placeholder="End time" value={endTimeFilter} onChange={(e) => setEndTimeFilter(e.target.value)} />
+                                <input type="time" aria-label="start-time-filter" placeholder="Start time" value={startTimeFilter} onChange={(e) => setStartTimeFilter(e.target.value)} />
+                                <input type="time" aria-label="end-time-filter" placeholder="End time" value={endTimeFilter} onChange={(e) => setEndTimeFilter(e.target.value)} />
                             </div>
                             <div>
-                                <input type="date" placeholder="Start date" value={startDateFilter} onChange={(e) => setStartDateFilter(e.target.value)} />
-                                <input type="date" placeholder="End date" value={endDateFilter} onChange={(e) => setEndDateFilter(e.target.value)} />
+                                <input type="date" aria-label="start-date-filter" placeholder="Start date" value={startDateFilter} onChange={(e) => setStartDateFilter(e.target.value)} />
+                                <input type="date" aria-label="end-date-filter" placeholder="End date" value={endDateFilter} onChange={(e) => setEndDateFilter(e.target.value)} />
                             </div>
                             <div className={styles.check}>
                                 <input
                                     type="checkbox"
+                                    aria-label="my-events-checkbox"
                                     checked={showCreatedEvents}
-                                    onChange={() => {
-                                        if (showAttachedEvents) {
-                                            setShowCreatedEvents(!showCreatedEvents);
-                                        } else {
-                                            setShowCreatedEvents(true);
-                                        }
+                                    onChange={() => { setShowCreatedEvents(!showCreatedEvents);
+                                        // if (showAttachedEvents) {
+                                        //     setShowCreatedEvents(!showCreatedEvents);
+                                        // } else {
+                                        //     setShowCreatedEvents(true);
+                                        // }
                                     }}
+                                    disabled={!showCreatedEvents && !showAttachedEvents}
                                 />
                                 <div className={styles["check-properties"]}>My events</div>
                             </div>
 <div className={styles.check}>
     <input
       type="checkbox"
+       aria-label="attached-events-checkbox"
       checked={showAttachedEvents}
-      onChange={() => {
-        if (showCreatedEvents) {
-          setShowAttachedEvents(!showAttachedEvents);
-        } else {
-          setShowAttachedEvents(true);
-        }
+      onChange={() => {setShowAttachedEvents(!showAttachedEvents);
+        // if (showCreatedEvents) {
+        //   setShowAttachedEvents(!showAttachedEvents);
+        // } else {
+        //   setShowAttachedEvents(true);
+        // }
       }}
       disabled={!showCreatedEvents && !showAttachedEvents}
     />
@@ -147,7 +152,7 @@ export default function EventsPage(){
         <h1 className={`justify-content-center ${styles["event-type"]}`}>
           My events
         </h1>
-        {filteredEvents && <Events events={filteredEvents}></Events>}
+        {filteredEvents && <Events events={filteredEvents} aria-label="created"></Events>}
       </>
     )}
       {showCreatedEvents === showAttachedEvents && <hr className={styles["hr"]}/> }
@@ -156,7 +161,7 @@ export default function EventsPage(){
         <h1 className={`justify-content-center ${styles["event-type"]}`}>
           Attached events
         </h1>
-        {filteredAttachedEvents && <Events events={filteredAttachedEvents}></Events>}
+        {filteredAttachedEvents && <Events events={filteredAttachedEvents} aria-label="attached"></Events>}
       </>
     )}
   </>

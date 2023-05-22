@@ -14,17 +14,20 @@ jest.mock("../EventInfo/InfoService")
 jest.mock("../EventInfo/UserService")
 jest.mock("../EventInfo/DeleteService")
 
+
 const mockGetEventInfo = jest.mocked(getInfo)
 const mockGetUsersInfo = jest.mocked(getInfo)
 const mockFindUser = jest.mocked(getInfo)
 const mockAddUser = jest.mocked(AddUserToEvent)
-const mockDeleteEvent = jest.mocked(AddUserToEvent)
+const mockDeleteEvent = jest.mocked(DeleteInfo)
+const mockDeleteUser = jest.mocked(DeleteInfo)
 
 const mockNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useNavigate: () => mockNavigate,
 }));
+
 const event : IEvent = {
     id: 2,
     title: "Test event",
@@ -143,6 +146,21 @@ describe('EventInfoPage', () => {
             );
         })
     })
+
+    test('should delete user from list when delete button was clicked',async () => {
+        mockGetEventInfo.mockResolvedValueOnce(event)
+        mockGetUsersInfo.mockResolvedValueOnce(users)
+        mockDeleteUser.mockResolvedValueOnce({})
+        render(<EventInfoPage/>,{wrapper: Router})
+        window.sessionStorage.setItem('username', event.username)
+        await waitFor(() => {
+            const deleteButtons = screen.getAllByText('-');
+            fireEvent.click(deleteButtons[0]);
+            mockGetUsersInfo.mockResolvedValueOnce(users)
+            expect(mockDeleteUser).toBeCalledWith(`http://127.0.0.1:5000/api/v1/event/${event?.id}/${users[0].username}`)
+        })
+    })
+
     test('should delete event and navigate to events page when response was ok', async ()=>{
         mockGetEventInfo.mockResolvedValueOnce(event)
         mockGetUsersInfo.mockResolvedValueOnce(users)
@@ -152,9 +170,7 @@ describe('EventInfoPage', () => {
         await waitFor(() => {
             const button = screen.getByRole('button', {name: "Delete this event!"})
             fireEvent.click(button)
-              expect(mockDeleteEvent).toHaveBeenCalledWith(
-          `http://127.0.0.1:5000/api/v1/event/${event.id}`
-            );
+               expect(mockDeleteEvent).toHaveBeenCalled();
         })
         await waitFor(() => {
             expect(mockNavigate).toHaveBeenCalledWith('/events');

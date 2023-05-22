@@ -13,10 +13,6 @@ export async function getUsers(url: string) {
         if (response.ok) {
             return response.json();
         }
-        return response.json().then((error) => {
-            throw new Error(error.message);
-        });
-    }).catch((error) => {
-       alert(ErrorMessageProvider(error.message));
+        return response.json().then((error) => { throw new Error(error.message); });
     });
 }
