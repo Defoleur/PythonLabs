@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import styles from "../Styles/EventInfoPage.module.scss";
 import list_styles from "../Styles/UserList.module.scss";
 import edit_styles from "../Styles/EditEventPage.module.scss"
-import {useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {IEvent, IUser} from "../models";
 import getInfo from "./InfoService";
 import Avatar from "../mikey.png";
@@ -12,6 +12,7 @@ import Loading from "../Loading";
 import AddUserToEvent from "./UserService";
 import ErrorMessageProvider from "../ErrorMessageProvider";
 import {Alert} from "react-bootstrap";
+import ErrorPage from "../Errors/ErrorPage";
 
 
 export default function EventInfoPage() {
@@ -23,6 +24,7 @@ export default function EventInfoPage() {
     const [username, setUsername] = useState('')
     const [showAlert, setShowAlert] = useState(false);
     const [textAlert, setTextAlert] = useState("");
+    const [isNotFound, setIsNotFound] = useState(false);
     const eventUrl = `http://127.0.0.1:5000/api/v1/event/${id}`;
     const getUsersUrl = `http://127.0.0.1:5000/api/v1/${id}/users`;
     const navigation = useNavigate();
@@ -32,7 +34,9 @@ export default function EventInfoPage() {
             const event : IEvent = data
             setEvent(event)
             setIsLoading(false)
-        })
+        }).catch(( () => {
+            setIsNotFound(true)
+        }))
         getInfo(getUsersUrl).then((data) => {
             setIsLoading(true)
             const users : IUser[] = data
@@ -92,7 +96,7 @@ export default function EventInfoPage() {
             setIsLoading(false)
         })})
     }
-    return (<body className={styles.body}>
+    return (isNotFound ? <ErrorPage code={404} error="Not Found" text="The page you're looking for doesn't exist 😵"/> : (<body className={styles.body}>
     {isLoading ? (
   <Loading color="white" />) : (
         <div className={styles["custom-container"]}>
@@ -160,11 +164,12 @@ export default function EventInfoPage() {
             {event?.username === sessionStorage.getItem("username") &&
                 <div>
                     {/*<button className={styles["custom-button"]}>Add users!</button>*/}
+                    <Link to={`/event/edit/${id}`}><button className={`${styles["custom-button"]}`}>Edit this event!</button></Link>
                     <button className={`${styles["custom-button"]} ${styles["delete-button"]}`} onClick={deleteEvent}>Delete this event!</button>
                 </div>
                  }
         </div>)
     }
-        </body>)
+        </body>))
 }
 

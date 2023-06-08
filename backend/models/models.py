@@ -45,13 +45,13 @@ class User(Base):
 
     def to_dict(self) -> dict:
         return {
+            'id' : self.id,
             'username': self.username,
-             'firstName': self.firstName,
+            'firstName': self.firstName,
             'lastName': self.lastName,
-            'password': self.password,
             'phone': self.phone,
             'email': self.email,
-            'role': str(self.role)
+            'role': 'admin' if self.role == Role.admin else 'user'
         }
 
     @validates("username")
@@ -120,8 +120,8 @@ class Event(Base):
             'title': self.title,
             'content': self.content,
             'date': str(self.date),
-            'startTime': str(self.startTime),
-            'endTime': str(self.endTime),
+            'startTime': self.startTime.strftime('%H:%M'),
+            'endTime': self.endTime.strftime('%H:%M'),
             'user_id': self.user_id,
             'username': username
         }

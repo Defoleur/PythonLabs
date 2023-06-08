@@ -43,9 +43,10 @@ def create_event():
     if ('title' in event_data and
             'date' in event_data):
         title = event_data['title']
-        id = event_data['id']
+        # id = event_data['id']
         date_pattern = re.compile('^(\d{4})-(\d{2})-(\d{2})$')
-        time_pattern = re.compile('^(\d{2}):(\d{2}):(\d{2})$')
+        time_pattern = re.compile('^(\d{2}):(\d{2})$')
+        # time_pattern = re.compile('^(\d{2}):(\d{2}):(\d{2})$')
         if not date_pattern.match(event_data['date']):
             return jsonify({"message": 'Incorrect format of a date field!'}), 400
         data = re.search(date_pattern, event_data['date'])
@@ -69,7 +70,7 @@ def create_event():
             else:
                 endTime = event_data['endTime']
 
-        event = Event(id=id, title=title, content=content, user_id=auth.current_user().id, endTime=endTime, date=date2,
+        event = Event(title=title, content=content, user_id=auth.current_user().id, endTime=endTime, date=date2,
                       startTime=startTime)
         session.add(event)
         try:
@@ -93,6 +94,16 @@ def update_event():
         event = event_query.first()
         if event.user_id != auth.current_user().id and auth.current_user().role != Role.admin:
             raise NotSufficientRights("No access")
+        event_data.pop("username")
+        date_pattern = re.compile('^(\d{4})-(\d{2})-(\d{2})$')
+        data = re.search(date_pattern, event_data['date'])
+        year = data[1]
+        day = data[2]
+        month = data[3]
+        date2 = date(int(year), int(day), int(month))
+        current_event = Event(title=event_data["title"], content=event_data['content'], user_id=event_data['user_id'], endTime=event_data['endTime'], date=date2,
+                      startTime=event_data['startTime'])
+        event_query.update(event_data, synchronize_session="fetch")
         session.commit()
     except IntegrityError:
         return jsonify({"message": 'Integrity Error'}), 400
@@ -137,19 +148,22 @@ def created_events(username):
     )
 
 
-@event_api.route("/api/v1/event/<user_id>/attached", methods=['GET'])
+@event_api.route("/api/v1/event/<username>/attached", methods=['GET'])
 @auth.login_required()
-def attached_events(user_id):
-    current_user = session.query(User).get(int(user_id))
+def attached_events(username):
+    current_user = session.query(User).filter_by(username=username).first()
     if current_user is None:
         return jsonify({"message": 'User not found'}), 404
     if current_user.id != auth.current_user().id and auth.current_user().role != Role.admin:
         raise NotSufficientRights("No access")
-    events = session.query(EventUser).filter_by(user_id=user_id)
+    events = session.query(EventUser).filter_by(user_id=current_user.id)
     events_json = []
     if events is None:
         return jsonify({"message": "No events was found"}), 404
     for event in events:
+        event_from_db = session.query(Event)
+        current_event = event_from_db.get(int(event.event_id))
+        current_user = session.query(User).get(current_event.user_id)
         events_json.append(event.event.to_dict(current_user.username))
     return Response(
         response=json.dumps(events_json),
@@ -169,11 +183,13 @@ def add_user_to_event():
                                         user_id=int(user_data['user'])).first()
 
     if current_event is not None:
-        return jsonify({"message": 'User is already registered'}), 400
+        return jsonify({"message": 'User is already attached to this event!'}), 400
 
     try:
         event_user = EventUser(event_id=user_data['event'], user_id=user_data['user'])
         event = session.query(Event).filter(Event.id == user_data['event']).first()
+        if event.user_id == event_user.user_id:
+            return jsonify({"message": 'User is owner of this event!'}), 400
         if event.user_id != auth.current_user().id and auth.current_user().role != Role.admin:
             raise NotSufficientRights("No access")
         session.add(event_user)
@@ -183,11 +199,12 @@ def add_user_to_event():
     return jsonify({"message": 'User successfully added to event!'}), 200
 
 
-@event_api.route("/api/v1/event/<event_id>/<user_id>", methods=['DELETE'])
+@event_api.route("/api/v1/event/<event_id>/<username>", methods=['DELETE'])
 @auth.login_required()
-def delete_user_from_event(event_id, user_id):
+def delete_user_from_event(event_id, username):
+    user = session.query(User).filter_by(username=username).first()
     event = session.query(EventUser)
-    current_event = event.filter_by(event_id=int(event_id), user_id=int(user_id)).first()
+    current_event = event.filter_by(event_id=int(event_id), user_id=int(user.id)).first()
     if current_event is None:
         return jsonify({"message":'Event or user not found'}), 404
     if current_event.event.user_id != auth.current_user().id and \
@@ -211,7 +228,8 @@ def get_event_users(event_id):
     for user_event in event_users:
         user_id = user_event.user_id
         current_user = session.query(User).get(int(user_id))
-        event_users_json.append({"user_id": user_id, "username": current_user.username})
+        event_users_json.append(current_user.to_dict())
+            # {"user_id": user_id, "username": current_user.username})
     return Response(
         response=json.dumps(event_users_json),
         status=200,

@@ -60,7 +60,6 @@ describe("EventsPage", () => {
     test('should show user attached and created events', async () => {
         mockGetCreatedEvents.mockResolvedValueOnce(createdEvents)
         mockGetAttachedEvents.mockResolvedValueOnce(attachedEvents)
-        window.sessionStorage.setItem('username', attachedEvents[0].username)
         render(<EventsPage/>,{wrapper: Router})
         await waitFor(() => {
             const eventItems = screen.getAllByLabelText('event')
@@ -97,7 +96,6 @@ describe("EventsPage", () => {
       fireEvent.click(searchButton)
 
       await waitFor(() => {
-        const eventItems = screen.getAllByLabelText('event')
         const filteredCreatedEvents = createdEvents.filter(event => event.title.toLowerCase().includes('filter'))
         const filteredAttachedEvents = attachedEvents.filter(event => event.title.toLowerCase().includes('filter'))
 
@@ -110,7 +108,6 @@ describe("EventsPage", () => {
           const eventTitle = screen.queryByText(event.title)
           expect(eventTitle).toBeInTheDocument()
         })
-        //expect(eventItems).toHaveLength(filteredCreatedEvents.length + filteredAttachedEvents.length)
       })
     })
     test('should disable created events when created events checkbox is unchecked', async () => {
@@ -126,51 +123,24 @@ describe("EventsPage", () => {
         await waitFor(() => {
             expect(screen.queryByText("attached")).not.toBeInTheDocument()
         })
-
+        });
+    test('should not disable attached events when created events checkbox is unchecked and reverse', async () => {
+        mockGetCreatedEvents.mockResolvedValueOnce(createdEvents)
+        mockGetAttachedEvents.mockResolvedValueOnce(attachedEvents)
+        render(<EventsPage/>, {wrapper: Router})
+        const attachedEventsCheckbox = screen.getByLabelText('attached-events-checkbox') as HTMLInputElement;
+        const createdEventsCheckbox = screen.getByLabelText('my-events-checkbox') as HTMLInputElement;
+        fireEvent.click(screen.getByLabelText('my-events-checkbox'));
+        fireEvent.click(screen.getByLabelText('attached-events-checkbox'));
+        await waitFor(() => {
+            expect(attachedEventsCheckbox.checked).toBe(true)
+        })
+        fireEvent.click(screen.getByLabelText('my-events-checkbox'));
+        fireEvent.click(screen.getByLabelText('attached-events-checkbox'));
+        fireEvent.click(screen.getByLabelText('my-events-checkbox'));
+        await waitFor(() => {
+            expect(createdEventsCheckbox.checked).toBe(true)
+        })
 });
-// test('should toggle "My events" checkbox and disable "Attached events" checkbox', async () => {
-//   mockGetCreatedEvents.mockResolvedValueOnce(createdEvents)
-//       mockGetAttachedEvents.mockResolvedValueOnce(attachedEvents)
-//       render(<EventsPage/>, {wrapper: Router})
-//
-//     const myEventsCheckbox = screen.getByLabelText('my-events-checkbox') as HTMLInputElement;
-//   const attachedEventsCheckbox = screen.getByLabelText("attached-events-checkbox") as HTMLInputElement;
-//
-//   expect(myEventsCheckbox).toBeChecked();
-//   expect(attachedEventsCheckbox).toBeEnabled();
-//
-//   fireEvent.click(myEventsCheckbox);
-// await waitFor(() => {
-//   expect(myEventsCheckbox).not.toBeChecked();
-//   expect(attachedEventsCheckbox.disabled).toBe(true);
-//   })
-//
-//   fireEvent.click(myEventsCheckbox);
-// await waitFor(() => {
-//   expect(myEventsCheckbox).toBeChecked();
-//   expect(attachedEventsCheckbox).toBeEnabled();
-//   })
-// });
-//
-// test('should toggle "Attached events" checkbox and disable "My events" checkbox', () => {
-//   mockGetCreatedEvents.mockResolvedValueOnce(createdEvents)
-//       mockGetAttachedEvents.mockResolvedValueOnce(attachedEvents)
-//       render(<EventsPage/>, {wrapper: Router})
-//
-//      const myEventsCheckbox = screen.getByLabelText('my-events-checkbox');
-//   const attachedEventsCheckbox = screen.getByLabelText("attached-events-checkbox");
-//
-//   expect(attachedEventsCheckbox).toBeChecked();
-//   expect(myEventsCheckbox).toBeEnabled();
-//
-//   fireEvent.click(attachedEventsCheckbox);
-//
-//   expect(attachedEventsCheckbox).not.toBeChecked();
-//   expect(myEventsCheckbox).toBeDisabled();
-//
-//   fireEvent.click(attachedEventsCheckbox);
-//
-//   expect(attachedEventsCheckbox).toBeChecked();
-//   expect(myEventsCheckbox).toBeEnabled();
-// });
+
 })

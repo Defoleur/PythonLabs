@@ -26,7 +26,7 @@ const Navbar = () => {
             </a>
           </div>
           <button
-            className="navbar-toggler mr-1"
+            className="navbar-toggler m-2"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#info"
@@ -63,7 +63,7 @@ const Navbar = () => {
             </a>
           </div>
           <button
-            className="navbar-toggler mr-5"
+            className="navbar-toggler mr-5 m-2"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#info"
@@ -84,6 +84,7 @@ const Navbar = () => {
               </Link>
             </a>
             <div className="navbar-nav ml-auto justify-content-end">
+               <div className="d-flex">
               <a className="nav-item nav-link ml-auto">
                 <img
                   className={styles["profile-pic"]}
@@ -96,6 +97,7 @@ const Navbar = () => {
                   {sessionStorage.getItem("username")}
                 </Link>
               </a>
+               </div>
             </div>
           </div>
         </nav>

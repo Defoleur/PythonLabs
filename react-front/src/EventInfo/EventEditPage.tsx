@@ -1,17 +1,20 @@
 import React, {useEffect, useState} from "react";
 import styles from "../Styles/EditEventPage.module.scss";
 import {IEvent} from "../models";
-import CreateEvent from "./CreateEventService";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import ErrorMessageProvider from "../ErrorMessageProvider";
 import {Alert} from "react-bootstrap";
+import UpdateEvent from "./UpdateService";
+import getInfo from "./InfoService";
 
 
-export default function CreateEventPage(){
-    const eventUrl = `http://127.0.0.1:5000/api/v1/event`
+export default function EventEditPage(){
+    const { id } = useParams();
+    const eventEditUrl = `http://127.0.0.1:5000/api/v1/event`
     const navigation = useNavigate();
     const [showAlert, setShowAlert] = useState(false);
-  const [textAlert, setTextAlert] = useState("");
+    const [textAlert, setTextAlert] = useState("");
+    const eventUrl = `http://127.0.0.1:5000/api/v1/event/${id}`;
     const [event, setEvent] = useState<IEvent>({
     id: 0,
     title: "",
@@ -22,7 +25,12 @@ export default function CreateEventPage(){
     user_id: 0,
     username: "",
   });
-
+    useEffect(() => {
+        getInfo(eventUrl).then((data) => {
+            const event : IEvent = data
+            setEvent(event)
+        })
+    }, [])
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
     setEvent((prevEvent : IEvent) => ({
@@ -32,19 +40,21 @@ export default function CreateEventPage(){
   };
 
    const handleSubmit = () => {
-     CreateEvent(eventUrl, event).then(() => {
-          navigation('/events')
-           alert("Event was successfully created.")
-      }).catch ((error) => {
-      setTextAlert(ErrorMessageProvider(error.message))
+  UpdateEvent(eventEditUrl, event).then(response => {
+      if (response.message == "Event updated") {
+        navigation(`/event/${id}`);
+        alert("Event was successfully updated.");
+      }
+    }).catch(error => {
+      setTextAlert(ErrorMessageProvider(error.message));
       setShowAlert(true);
-    })
-  };
+    });
+};
 
   return (
       <div className={styles.body}>
         <div className={styles["custom-container"]}>
-            <div className={`${styles["event-name"]} text-center m-3`} id="event-name">Add new event!</div>
+            <div className={`${styles["event-name"]} text-center m-3`} id="event-name">Edit event!</div>
           <div className={styles["event-details"]}>
             <div className="row gx-5">
               <div className="col-md-6">
@@ -116,8 +126,9 @@ export default function CreateEventPage(){
               <button className={styles["custom-button"]} onClick={handleSubmit}>
                 Save!
               </button>
-                    </div>
+                 <Link to={`/event/${id}`}><button className={`${styles["custom-button"]}`}>Back!</button></Link>
             </div>
+                </div>
           </div>
         </div>
       </div>

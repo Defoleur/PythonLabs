@@ -104,33 +104,32 @@ export default function EventsPage(){
                                 <input type="date" aria-label="start-date-filter" placeholder="Start date" value={startDateFilter} onChange={(e) => setStartDateFilter(e.target.value)} />
                                 <input type="date" aria-label="end-date-filter" placeholder="End date" value={endDateFilter} onChange={(e) => setEndDateFilter(e.target.value)} />
                             </div>
-                            <div className={styles.check}>
+                           <div className={styles.check}>
                                 <input
                                     type="checkbox"
                                     aria-label="my-events-checkbox"
                                     checked={showCreatedEvents}
-                                    onChange={() => { setShowCreatedEvents(!showCreatedEvents);
-                                        // if (showAttachedEvents) {
-                                        //     setShowCreatedEvents(!showCreatedEvents);
-                                        // } else {
-                                        //     setShowCreatedEvents(true);
-                                        // }
+                                    onChange={() => {
+                                        if (showAttachedEvents) {
+                                            setShowCreatedEvents(!showCreatedEvents);
+                                        } else {
+                                            setShowCreatedEvents(true);
+                                        }
                                     }}
-                                    disabled={!showCreatedEvents && !showAttachedEvents}
                                 />
                                 <div className={styles["check-properties"]}>My events</div>
                             </div>
 <div className={styles.check}>
     <input
       type="checkbox"
-       aria-label="attached-events-checkbox"
+      aria-label="attached-events-checkbox"
       checked={showAttachedEvents}
-      onChange={() => {setShowAttachedEvents(!showAttachedEvents);
-        // if (showCreatedEvents) {
-        //   setShowAttachedEvents(!showAttachedEvents);
-        // } else {
-        //   setShowAttachedEvents(true);
-        // }
+      onChange={() => {
+        if (showCreatedEvents) {
+          setShowAttachedEvents(!showAttachedEvents);
+        } else {
+          setShowAttachedEvents(true);
+        }
       }}
       disabled={!showCreatedEvents && !showAttachedEvents}
     />

@@ -4,6 +4,7 @@ import json
 import bcrypt
 from flask import request, Response, jsonify
 from flask import Blueprint
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from backend.errors.auth_errors import NotSufficientRights
@@ -29,8 +30,9 @@ def add_user():
         user = User(**user_data)
         session.add(user)
         session.commit()
-    except:
-        return jsonify({"message": "User was not created"}), 400
+    except IntegrityError:
+        session.rollback()
+        return jsonify({"message": "User was not created. Please recheck your fields!"}), 400
     return jsonify({"message": "User successfully created!"}), 200
 
 
@@ -98,3 +100,30 @@ def delete_user(username):
     return jsonify({"message": "Deleted successfully"}), 200
 
 
+@user_api.route("/api/v1/user/admin/<username>", methods=['PUT'])
+@auth.login_required(role='admin')
+def add_rights_to_user(username):
+    user = session.query(User).filter_by(username=username).first()
+
+    session.commit()
+    if user is None:
+        return jsonify({"message": "User not found"}), 404
+    user.role = Role.admin
+    session.commit()
+    return jsonify({"message": "Added rights successfully"}), 200
+
+
+@user_api.route("/api/v1/users", methods=['GET'])
+@auth.login_required()
+def get_users():
+    users = session.query(User)
+    if users is None:
+        return jsonify({"message": "Users not found"}), 404
+    users_json = []
+    for user in users:
+        users_json.append(user.to_dict())
+    return Response(
+        response=json.dumps(users_json),
+        status=200,
+        mimetype='application/json'
+    )

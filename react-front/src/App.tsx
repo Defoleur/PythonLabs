@@ -20,6 +20,7 @@ import ErrorPage from "./Errors/ErrorPage";
 import AdminRoute from "./Routes/AdminRoute";
 import EventInfoPage from "./EventInfo/EventInfoPage";
 import CreateEventPage from "./CreateEvent/CreateEventPage";
+import EventEditPage from "./EventInfo/EventEditPage";
 
 function App() {
     // const [isLogged, setIsLogged] = useState(false)
@@ -51,6 +52,8 @@ function App() {
           </AuthorizedRoute>} />
            <Route path="/event/:id" element={
               <AuthorizedRoute><EventInfoPage/></AuthorizedRoute>} />
+          <Route path="/event/edit/:id" element={
+              <AuthorizedRoute><EventEditPage/></AuthorizedRoute>} />
            <Route path="/event" element={
               <AuthorizedRoute><CreateEventPage/></AuthorizedRoute>} />
           <Route path="*" element={<ErrorPage code={404} error="Not Found" text="The page you're looking for doesn't exist 😵"/>} />
